@@ -3,8 +3,10 @@
   flex-direction: row;
   align-items: center;
   .nv-logo-path {
-    cursor: pointer;
     padding-right: .5vw;
+    path {
+      cursor: pointer;
+    }
   }
   .nv-logo-title {
     font-weight: normal;
