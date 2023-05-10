@@ -1,8 +1,11 @@
+import Logo from "./elements/Logo";
 
 function App() {
   return (
-    <div className="App">
-
+    <div className="app-container">
+      <div className="header">
+        <Logo/>
+      </div>
     </div>
   );
 }
