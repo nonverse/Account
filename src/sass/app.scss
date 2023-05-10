@@ -1,0 +1,33 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+// Variables
+@import 'variables';
+
+// Classnames
+@import 'classnames';
+
+// App Config
+* {
+  font-family: $font-family-sans-serif;
+  margin: 0;
+  padding: 0;
+
+  body {
+    background-color: $body-bg;
+
+    .app-container {
+      height: 100vh;
+      width: 100vw;
+    }
+  }
+
+  .action-cover {
+    pointer-events: none;
+  }
+}
+
+// Stylesets
+
+// Elements
+@import "elements/logo";
