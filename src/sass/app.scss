@@ -24,6 +24,10 @@
         width: 100%;
         display: grid;
         grid-template-columns: 3fr 7fr;
+        .content-wrapper {
+          display: flex;
+          justify-content: center;
+        }
       }
     }
   }
