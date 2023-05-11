@@ -1,0 +1,30 @@
+.item {
+  display: grid;
+  grid-template-columns: 1fr 3.5fr auto;
+  width: calc(100% - 2vw);
+  align-items: center;
+  padding: .5rem 0;
+  .item-name {
+    color: rgba($font-color, .5);
+  }
+  .item-value {
+    width: 100%;
+    display: flex;
+    span {
+      color: $font-color;
+      margin-right: .25rem;
+    }
+    .item-line {
+      flex-grow: 1;
+      border-bottom: solid 2px rgba($font-color, .25);
+      margin-right: .25rem;
+    }
+  }
+  .item-edit {
+    cursor: pointer;
+    stroke: $splash;
+    &:hover {
+      fill: $splash;
+    }
+  }
+}
