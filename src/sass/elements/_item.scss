@@ -6,6 +6,10 @@
   padding: .5rem 0;
   .item-name {
     color: rgba($font-color, .5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding-right: 3rem;
   }
   .item-value {
     width: 100%;
