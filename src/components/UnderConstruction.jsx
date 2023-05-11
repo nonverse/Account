@@ -16,9 +16,9 @@ const UnderConstruction = () => {
                     <linearGradient id="e0a7c0b6-1905-489a-9c34-9e1ea499243e-336" x1="1196.66765" y1="772.1466"
                                     x2="1196.66765" y2="275.08965" gradientTransform="translate(-540.54499)"
                                     gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stop-color="gray" stop-opacity="0.25"/>
-                        <stop offset="0.53514" stop-color="gray" stop-opacity="0.12"/>
-                        <stop offset="1" stop-color="gray" stop-opacity="0.1"/>
+                        <stop offset="0" stopColor="gray" stopOpacity="0.25"/>
+                        <stop offset="0.53514" stopColor="gray" stopOpacity="0.12"/>
+                        <stop offset="1" stopColor="gray" stopOpacity="0.1"/>
                     </linearGradient>
                 </defs>
                 <title>instruction manual</title>
@@ -155,23 +155,23 @@ const UnderConstruction = () => {
                 <path
                     d="M429.5,725.48926c-9.49219,0-18.98437-3.59961-28.41016-10.79688l1.82032-2.38476c17.89257,13.66406,35.28711,13.66406,53.17968,0l1.82032,2.38476C448.48438,721.88965,438.99219,725.48926,429.5,725.48926Z"
                     transform="translate(-45 -120)"/>
-                <rect x="49" y="0.5" width="368" height="305" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
+                <rect x="49" y="0.5" width="368" height="305" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
                 <ellipse cx="333.4107" cy="313.30741" rx="11.83604" ry="30.7555"
                          transform="translate(-131.79848 12.34201) rotate(-19.92013)" fill="none" stroke="#3f3d56"
-                         stroke-miterlimit="10"/>
-                <circle cx="243.85304" cy="102.47754" r="16.04635" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="319.92461" cy="102.47754" r="16.04635" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="301.61989" cy="128.15169" r="13.37196" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="301.61989" cy="128.15169" r="3.74415" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="266.24661" cy="128.15169" r="3.74415" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="306.96867" cy="121.73315" r="1.60463" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="266.38269" cy="128.15169" r="13.37196" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
-                <circle cx="261.03391" cy="121.73315" r="1.60463" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
+                         strokeMiterlimit="10"/>
+                <circle cx="243.85304" cy="102.47754" r="16.04635" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="319.92461" cy="102.47754" r="16.04635" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="301.61989" cy="128.15169" r="13.37196" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="301.61989" cy="128.15169" r="3.74415" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="266.24661" cy="128.15169" r="3.74415" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="306.96867" cy="121.73315" r="1.60463" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="266.38269" cy="128.15169" r="13.37196" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
+                <circle cx="261.03391" cy="121.73315" r="1.60463" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
                 <path
                     d="M390.47988,332.12757A65.10732,65.10732,0,0,0,367.4895,282.4131a49.86182,49.86182,0,0,0,6.24108-37.307,25.67417,25.67417,0,1,0-33.76322-36.45328,50.02689,50.02689,0,0,0-29.48518,0,25.67287,25.67287,0,1,0-33.76326,36.45328,49.8617,49.8617,0,0,0,6.24111,37.307,65.67674,65.67674,0,0,0-8.63469,8.887c-5.83767-15.09506-15.06318-25.4145-20.99882-23.26347-6.14576,2.22717-6.43642,16.97851-.64917,32.948a67.1048,67.1048,0,0,0,8.83812,16.97862,65.34788,65.34788,0,0,0,14.42532,56.93489c-5.33107.85843-9.01776,2.69981-9.01776,4.83354,0,2.954,7.06446,5.34879,15.77891,5.34879,1.42994,0,2.814-.06561,4.13119-.18647a64.93709,64.93709,0,0,0,24.71444,11.04839,2.00336,2.00336,0,0,0-.22964.9054c0,2.954,7.06445,5.34878,15.7789,5.34878s15.77891-2.39474,15.77891-5.34878a2.424,2.424,0,0,0-.78825-1.66957A65.27959,65.27959,0,0,0,390.47988,332.12757Z"
-                    transform="translate(-45 -120)" fill="none" stroke="#3f3d56" stroke-miterlimit="10"/>
+                    transform="translate(-45 -120)" fill="none" stroke="#3f3d56" strokeMiterlimit="10"/>
                 <ellipse cx="283.43076" cy="138.61153" rx="2.6625" ry="6.08573" fill="none" stroke="#3f3d56"
-                         stroke-miterlimit="10"/>
+                         strokeMiterlimit="10"/>
             </svg>
             <h1>We’re still working on this page</h1>
             <h2>This page is still under construction. Click <span className="splash">here</span> to receive notifications about site updates</h2>
