@@ -5,9 +5,9 @@ const ContentContainer = ({heading, subHeading, doesScroll=false, children}) => 
             <div className="content-heading">
                 <h1>{heading}</h1>
                 <h2>{subHeading}</h2>
-                <div className="content">
-                    {children}
-                </div>
+            </div>
+            <div className="content" style={{overflowY: doesScroll ? 'auto' : 'hidden'}}>
+                {children}
             </div>
         </div>
     )
