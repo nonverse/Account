@@ -1,0 +1,22 @@
+.sector-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 25vh;
+  h1 {
+    color: $splash !important;
+    font-weight: normal;
+    font-size: 1.5rem;
+    align-self: start;
+  }
+  .sector {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 3rem);
+    margin-left: 3rem;
+    margin-top: 1.5rem;
+    background-clip: content-box;
+    align-items: start;
+    overflow: hidden;
+  }
+}
