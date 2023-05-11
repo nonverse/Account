@@ -1,7 +1,14 @@
+import {motion} from "framer-motion";
 const UnderConstruction = () => {
 
     return (
-        <div className="under-construction">
+        <motion.div
+            key="under-construction"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: .1 }}
+            className="under-construction">
             <svg xmlns="http://www.w3.org/2000/svg"
                  xlink="http://www.w3.org/1999/xlink" data-name="Layer 1"
                  width="400" height="659.5" viewBox="0 0 1110 659.5">
@@ -168,7 +175,7 @@ const UnderConstruction = () => {
             </svg>
             <h1>We’re still working on this page</h1>
             <h2>This page is still under construction. Click <span className="splash">here</span> to receive notifications about site updates</h2>
-        </div>
+        </motion.div>
     )
 }
 
