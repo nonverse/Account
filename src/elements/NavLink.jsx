@@ -7,14 +7,12 @@ const NavLink = ({to, children}) => {
         active: {
             backgroundColor: "#6951FF",
             opacity: ".4",
-            borderRadius: "8px",
             paddingLeft: "1.5rem",
             marginLeft: "2rem",
             color: "#ECF0F3",
         },
         inactive: {
             backgroundColor: "transparent",
-            borderRadius: 0,
             paddingLeft: 0,
             marginLeft: 0,
             opacity: 1,
