@@ -11,6 +11,7 @@ function App() {
                 <div className="container">
                     <Navigation/>
                     <div className="content-wrapper">
+                        <div className="modal-portal"/>
                         <Router/>
                     </div>
                 </div>

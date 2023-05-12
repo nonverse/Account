@@ -1,7 +1,7 @@
 .item {
   display: grid;
   grid-template-columns: 1fr 3.5fr auto;
-  width: calc(100% - 2vw);
+  width: calc(100% - 3vw);
   align-items: center;
   padding: .5rem 0;
   .item-name {

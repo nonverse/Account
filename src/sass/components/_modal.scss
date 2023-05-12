@@ -1,0 +1,44 @@
+.modal-portal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  z-index: 1;
+
+  .modal-wrapper {
+    display: flex;
+  }
+
+  .screen-modal {
+    background-color: $main;
+    overflow: hidden;
+
+    .screen-modal-heading {
+      width: 40vw;
+      position: relative;
+
+      .content-heading {
+        justify-self: center;
+      }
+
+      .screen-modal-back {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        svg {
+          stroke: rgba($font-color, .5);
+          justify-self: start;
+          scale: 1.5;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .content {
+      width: 40vw !important;
+      padding-right: 0 !important;
+      transform: none !important;
+    }
+  }
+}
