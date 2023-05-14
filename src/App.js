@@ -17,7 +17,7 @@ function App() {
             name_last: 'Abhayaratne',
             username: 'Isuru_A',
             phone: '0451 188 191',
-            dob: "16-09-2003",
+            dob: "16-9-2003",
             gender: "Male",
             recovery: {
                 email: 'isuru2003@yahoo.com',

@@ -1,12 +1,12 @@
 import Sector from "../Sector";
 import Item from "../../elements/Item";
 
-const ContactInformation = () => {
+const ContactInformation = ({user}) => {
 
     return (
         <Sector heading="Contact Information">
-            <Item name="E-mail" value="isuru2003a@gmail.com" action={() => (console.log("Done"))}/>
-            <Item name="Phone" value="0453 283 183" action={() => (console.log("Done"))}/>
+            <Item name="E-mail" value={user.email} action={() => (console.log("Done"))}/>
+            <Item name="Phone" value={user.phone} action={() => (console.log("Done"))}/>
         </Sector>
     )
 }
