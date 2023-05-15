@@ -2,15 +2,18 @@ import Logo from "./elements/Logo";
 import Navigation from "./components/Navigation";
 import {BrowserRouter} from "react-router-dom";
 import Router from "./components/Router";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {updateUser} from "./state/user";
+import Loader from "./components/Loader";
 
 function App() {
 
+    const [initialised, setInitialised] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
+        // Local test user
         dispatch(updateUser({
             email: 'isuru2003a@gmail.com',
             name_first: 'Isuru',
@@ -26,20 +29,30 @@ function App() {
             admin: 0,
             use_totp: 0,
         }))
+
+        //Temporary to imitate API fetch
+        setTimeout(() => {
+            setInitialised(true)
+        }, 500)
     }, [dispatch])
 
     return (
         <div className="app">
-            <Logo/>
-            <BrowserRouter>
-                <div className="container">
-                    <Navigation/>
-                    <div className="content-wrapper">
-                        <div className="modal-portal"/>
-                        <Router/>
-                    </div>
-                </div>
-            </BrowserRouter>
+            {initialised ?
+                <>
+                    <Logo/>
+                    <BrowserRouter>
+                        <div className="container">
+                            <Navigation/>
+                            <div className="content-wrapper">
+                                <div className="modal-portal"/>
+                                <Router/>
+                            </div>
+                        </div>
+                    </BrowserRouter>
+                </>
+                : <Loader/>
+            }
         </div>
     );
 }
