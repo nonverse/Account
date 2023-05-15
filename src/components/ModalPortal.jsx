@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import {AnimatePresence} from "framer-motion";
 import Name from "./PersonalInfo/Modals/Name";
+import Username from "./PersonalInfo/Modals/Username";
 
 const ModalPortal = () => {
 
@@ -15,7 +16,8 @@ const ModalPortal = () => {
      * @type {{modalKey: JSX.Element}}
      */
     const modalArray = {
-        'update_name': <Name/>
+        'update_name': <Name/>,
+        'update_username': <Username/>,
     }
 
     return (

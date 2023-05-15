@@ -13,7 +13,9 @@ const AboutYou = ({user}) => {
             <Item name="Name" value={`${user.name_first} ${user.name_last}`} action={() => {
                 dispatch(renderModal({id: "update_name"}))
             }}/>
-            <Item name="Username" value={user.username} action={() => (console.log("Done"))}/>
+            <Item name="Username" value={user.username} action={() => {
+                dispatch(renderModal({id: 'update_username'}))
+            }}/>
             <Item name="Date of Birth" value={calendar.formatDate(user.dob, "-")} action={() => (console.log("Done"))}/>
             <Item name="Gender" value={user.gender} action={() => (console.log("Done"))}/>
         </Sector>
