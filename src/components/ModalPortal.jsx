@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
-import ScreenModal from "./ScreenModal";
 import {AnimatePresence} from "framer-motion";
+import Name from "./PersonalInfo/Modals/Name";
 
 const ModalPortal = () => {
 
@@ -15,7 +15,7 @@ const ModalPortal = () => {
      * @type {{modalKey: JSX.Element}}
      */
     const modalArray = {
-        'update_name': <ScreenModal heading={"Name"} subHeading={"What should we call you?"}/>
+        'update_name': <Name/>
     }
 
     return (
