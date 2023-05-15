@@ -1,9 +1,16 @@
+import {useDispatch} from "react-redux";
+import {closeModal} from "../state/app/modal";
+
 const ScreenModal = ({heading, subHeading, children}) => {
+
+    const dispatch = useDispatch()
 
     return (
         <div className="modal-wrapper screen-modal content-container">
             <div className="screen-modal-heading">
-                <div className="screen-modal-back">
+                <div className="screen-modal-back" onClick={() => {
+                    dispatch(closeModal())
+                }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="55" height="24" viewBox="0 0 40 24" fill="none"
                          stroke="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                          className="feather feather-arrow-left">

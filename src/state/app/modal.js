@@ -7,8 +7,12 @@ export const modalSlice = createSlice({
         renderModal: (state, action) => {
             state.value = action.payload
         },
+
+        closeModal: (state) => {
+            state.value = {}
+        },
     }
 })
 
-export const { renderModal } = modalSlice.actions
+export const { renderModal, closeModal } = modalSlice.actions
 export default modalSlice.reducer
