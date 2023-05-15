@@ -1,12 +1,19 @@
 import {useDispatch} from "react-redux";
 import {closeModal} from "../state/app/modal";
+import {motion} from "framer-motion";
 
 const ScreenModal = ({heading, subHeading, children}) => {
 
     const dispatch = useDispatch()
 
     return (
-        <div className="modal-wrapper screen-modal content-container">
+        <motion.div layout className="modal-wrapper screen-modal content-container"
+                    key={heading}
+                    initial={{width: 0, x: "100%"}}
+                    animate={{width: "100%", x: 0}}
+                    exit={{width: "100%", x: 0}} // TODO Fix exit animation
+                    transition={{ duration: .1}}
+        >
             <div className="screen-modal-heading">
                 <div className="screen-modal-back" onClick={() => {
                     dispatch(closeModal())
@@ -26,7 +33,7 @@ const ScreenModal = ({heading, subHeading, children}) => {
             <div className="content">
                 {children}
             </div>
-        </div>
+        </motion.div>
     )
 }
 

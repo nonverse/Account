@@ -1,5 +1,6 @@
 import {useSelector} from "react-redux";
 import ScreenModal from "./ScreenModal";
+import {AnimatePresence} from "framer-motion";
 
 const ModalPortal = () => {
 
@@ -19,7 +20,9 @@ const ModalPortal = () => {
 
     return (
         <div className="modal-portal">
-            {modal ? modalArray[modal.id] : ''}
+            <AnimatePresence mode="wait">
+                {modal ? modalArray[modal.id] : ''}
+            </AnimatePresence>
         </div>
     )
 }
