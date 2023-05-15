@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {updateUser} from "./state/user";
 import Loader from "./components/Loader";
+import ModalPortal from "./components/ModalPortal";
 
 function App() {
 
@@ -45,7 +46,7 @@ function App() {
                         <div className="container">
                             <Navigation/>
                             <div className="content-wrapper">
-                                <div className="modal-portal"/>
+                                <ModalPortal/>
                                 <Router/>
                             </div>
                         </div>
