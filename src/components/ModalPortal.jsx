@@ -2,6 +2,7 @@ import {useSelector} from "react-redux";
 import {AnimatePresence} from "framer-motion";
 import Name from "./PersonalInfo/Modals/Name";
 import Username from "./PersonalInfo/Modals/Username";
+import DateOfBirth from "./PersonalInfo/Modals/DateOfBirth";
 
 const ModalPortal = () => {
 
@@ -18,6 +19,7 @@ const ModalPortal = () => {
     const modalArray = {
         'update_name': <Name/>,
         'update_username': <Username/>,
+        'update_dob': <DateOfBirth/>,
     }
 
     return (
