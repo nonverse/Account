@@ -16,6 +16,18 @@ const DateOfBirth = () => {
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
+    function validateDay(value) {
+        if (value < 1 || value > 31) {
+            return true
+        }
+    }
+
+    function validateYear(value) {
+        if (value.length !== 4) {
+            return true
+        }
+    }
+
     return (
         <ScreenModal heading="Date of Birth" subHeading="When were you born?">
             <Formik initialValues={{
@@ -39,13 +51,14 @@ const DateOfBirth = () => {
                 {({errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
                         <div id="birthday-form">
-                            <Select name="dob_month" label="Month">
+                            <Select name="dob_month" label="Month"
+                                    error={(errors.dob_day || errors.dob_year) ? 'Please enter a valid date' : false}>
                                 {Object.values(calendar.months).map(month => (
                                     <option key={`dob-month-${month}`}>{month}</option>
                                 ))}
                             </Select>
-                            <Field name="dob_day" label="Day"></Field>
-                            <Field name="dob_year" label="Year"></Field>
+                            <Field name="dob_day" label="Day" validate={validateDay} error={errors.dob_day}></Field>
+                            <Field name="dob_year" label="Year" validate={validateYear} error={errors.dob_year}></Field>
                         </div>
                     </Form>
                 )}
