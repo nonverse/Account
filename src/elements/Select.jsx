@@ -7,7 +7,9 @@ const Select = ({name, label, children}) => {
             {({field: {value}, form: {setFieldValue}}) => (
                 <div className="field-wrapper">
                     <span className="field-label">{label}</span>
-                    <select id={name} className="field" defaultValue={value}>
+                    <select id={name} className="field" defaultValue={value} onChange={(e) => {
+                        setFieldValue(name, e.target.value)
+                    }}>
                         {children}
                     </select>
                 </div>
