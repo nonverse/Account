@@ -16,10 +16,31 @@ const DateOfBirth = () => {
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
-    function validateDay(value) {
-        if (value < 1 || value > 31) {
-            return true
+    function validateDay(value, month, year) {
+
+        let key = helpers.getObjectKey(calendar.months, month)
+        const thirtyOne = [1, 3, 5, 7, 8, 10, 12]
+
+        if (++key === 2) {
+            if (year % 4 === 0) {
+                if (value < 1 || value > 29) {
+                    return true
+                }
+            } else {
+                if (value < 1 || value > 28) {
+                    return true
+                }
+            }
+        } else if (thirtyOne.includes(++key)) {
+            if (value < 1 || value > 30) {
+                return true
+            }
+        } else {
+            if (value < 1 || value > 31) {
+                return true
+            }
         }
+
     }
 
     function validateYear(value) {
@@ -48,7 +69,7 @@ const DateOfBirth = () => {
                     dispatch(closeModal())
                 }, 500)
             }}>
-                {({errors}) => (
+                {({values, errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
                         <div id="birthday-form">
                             <Select name="dob_month" label="Month"
@@ -57,8 +78,9 @@ const DateOfBirth = () => {
                                     <option key={`dob-month-${month}`}>{month}</option>
                                 ))}
                             </Select>
-                            <Field name="dob_day" label="Day" validate={validateDay} error={errors.dob_day}></Field>
-                            <Field name="dob_year" label="Year" validate={validateYear} error={errors.dob_year}></Field>
+                            <Field name="dob_day" label="Day" validate={value => validateDay(value, values.dob_month, values.dob_year)}
+                                   error={errors.dob_day}/>
+                            <Field name="dob_year" label="Year" validate={validateYear} error={errors.dob_year}/>
                         </div>
                     </Form>
                 )}
