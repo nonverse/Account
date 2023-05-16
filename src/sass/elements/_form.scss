@@ -21,6 +21,13 @@
         color: $font-color;
       }
 
+      select {
+        width: 100% !important;
+        padding: calc(1rem - .5px) !important;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
       .field-label {
         color: rgba($font-color, .5);
         margin-left: 5px;
