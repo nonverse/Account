@@ -40,6 +40,16 @@
         margin-top: .25rem;
       }
     }
+
+    .has-error {
+      .field-label {
+        color: rgba(orangered, .5);
+      }
+
+      .field {
+        border-color: rgba(orangered, .5);
+      }
+    }
   }
 
   .loader-wrapper {

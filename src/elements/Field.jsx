@@ -5,7 +5,7 @@ const Field = ({password, name, label, placeholder, error, validate}) => {
     return (
         <FormikField name={name} validate={validate}>
             {({field: {value}, form: {setFieldValue}}) => (
-                <div className="field-wrapper">
+                <div className={`field-wrapper ${error ? 'has-error' : ''}`}>
                     <span className="field-label">{label}</span>
                     <input id={name} className="field" type={password ? 'password' : 'text'} placeholder={placeholder}
                            defaultValue={value} onChange={(e) => {
