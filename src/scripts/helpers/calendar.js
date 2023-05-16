@@ -34,7 +34,7 @@ class calendar {
     formatDate(date, seperator) {
         const dateArray = date.split(seperator)
 
-        return `${this.months[dateArray[1]-1]} ${dateArray[0]}, ${dateArray[2]}`
+        return `${this.months[dateArray[1]-1]} ${dateArray[2]}, ${dateArray[0]}`
     }
 }
 
