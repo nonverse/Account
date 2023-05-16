@@ -1,6 +1,6 @@
 import {Field as FormikField} from "formik";
 
-const Select = ({name, label, children}) => {
+const Select = ({name, label, error, children}) => {
 
     return (
         <FormikField name={name}>
@@ -12,6 +12,7 @@ const Select = ({name, label, children}) => {
                     }}>
                         {children}
                     </select>
+                    <span className="field-error">{error}</span>
                 </div>
             )}
         </FormikField>
