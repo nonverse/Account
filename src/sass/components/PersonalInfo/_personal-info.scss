@@ -3,3 +3,11 @@
   flex-direction: row;
   gap: 1rem;
 }
+
+#gender-form {
+  display: flex;
+  flex-direction: row;
+  #gender {
+    width: 70%;
+  }
+}

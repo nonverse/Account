@@ -3,6 +3,7 @@ import {AnimatePresence} from "framer-motion";
 import Name from "./PersonalInfo/Modals/Name";
 import Username from "./PersonalInfo/Modals/Username";
 import DateOfBirth from "./PersonalInfo/Modals/DateOfBirth";
+import Gender from "./PersonalInfo/Modals/Gender";
 
 const ModalPortal = () => {
 
@@ -20,6 +21,7 @@ const ModalPortal = () => {
         'update_name': <Name/>,
         'update_username': <Username/>,
         'update_dob': <DateOfBirth/>,
+        'update_gender': <Gender/>,
     }
 
     return (

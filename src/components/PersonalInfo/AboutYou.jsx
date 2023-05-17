@@ -19,7 +19,9 @@ const AboutYou = ({user}) => {
             <Item name="Date of Birth" value={calendar.formatDate(user.dob, "-")} action={() => {
                 dispatch(renderModal({id: 'update_dob'}))
             }}/>
-            <Item name="Gender" value={user.gender} action={() => (console.log("Done"))}/>
+            <Item name="Gender" value={user.gender} action={() => {
+                dispatch(renderModal({id: 'update_gender'}))
+            }}/>
         </Sector>
     )
 }
