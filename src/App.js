@@ -23,10 +23,6 @@ function App() {
             phone: '+61-451 188 191',
             dob: "2003-9-16",
             gender: "Male",
-            recovery: {
-                email: 'isuru2003@yahoo.com',
-                phone: '+61-458 134 834'
-            },
             admin: 0,
             use_totp: 0,
         }))
