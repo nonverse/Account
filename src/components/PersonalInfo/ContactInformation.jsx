@@ -12,7 +12,10 @@ const ContactInformation = ({user}) => {
             <Item name="E-mail" value={user.email} action={() => {
                 dispatch(renderModal({id: 'update_email'}))
             }}/>
-            <Item name="Phone" value={user.phone} action={() => (console.log("Done"))}/>
+            {/*TODO Format Phone Number*/}
+            <Item name="Phone" value={user.phone} action={() => {
+                dispatch(renderModal({id: 'update_phone'}))
+            }}/>
         </Sector>
     )
 }

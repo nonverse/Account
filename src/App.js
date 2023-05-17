@@ -20,12 +20,12 @@ function App() {
             name_first: 'Isuru',
             name_last: 'Abhayaratne',
             username: 'Isuru_A',
-            phone: '0451 188 191',
+            phone: '+61-451 188 191',
             dob: "2003-9-16",
             gender: "Male",
             recovery: {
                 email: 'isuru2003@yahoo.com',
-                phone: '0458 134 834'
+                phone: '+61-458 134 834'
             },
             admin: 0,
             use_totp: 0,
