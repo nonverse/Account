@@ -4,6 +4,7 @@ import Name from "./PersonalInfo/Modals/Name";
 import Username from "./PersonalInfo/Modals/Username";
 import DateOfBirth from "./PersonalInfo/Modals/DateOfBirth";
 import Gender from "./PersonalInfo/Modals/Gender";
+import Email from "./PersonalInfo/Modals/Email";
 
 const ModalPortal = () => {
 
@@ -22,6 +23,7 @@ const ModalPortal = () => {
         'update_username': <Username/>,
         'update_dob': <DateOfBirth/>,
         'update_gender': <Gender/>,
+        'update_email': <Email/>,
     }
 
     return (

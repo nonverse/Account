@@ -1,23 +1,23 @@
 import ScreenModal from "../../ScreenModal";
-import {Formik} from "formik";
-import Form from "../../../elements/Form";
 import {useDispatch, useSelector} from "react-redux";
-import Select from "../../../elements/Select";
 import {useState} from "react";
+import Form from "../../../elements/Form";
+import Field from "../../../elements/Field";
+import validate from "../../../scripts/validate";
+import {Formik} from "formik";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 
-
-const Gender = () => {
+const Email = () => {
 
     const user = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
     return (
-        <ScreenModal heading="Gender" subHeading="What do you identify as?">
+        <ScreenModal heading="E-Mail" subHeading="What's your E-Mail">
             <Formik initialValues={{
-                gender: user.gender
+                email: user.email
             }} onSubmit={(values) => {
                 setLoading(true)
                 dispatch(updateUser({
@@ -29,15 +29,9 @@ const Gender = () => {
                     dispatch(closeModal())
                 }, 500)
             }}>
-                {() => (
+                {({errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
-                        <div id="gender-form">
-                            <Select name="gender" label="Gender">
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </Select>
-                        </div>
+                        <Field name="email" label="E-Mail" validate={validate.email} error={errors.email}/>
                     </Form>
                 )}
             </Formik>
@@ -45,4 +39,4 @@ const Gender = () => {
     )
 }
 
-export default Gender 
+export default Email 
