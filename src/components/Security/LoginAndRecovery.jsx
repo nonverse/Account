@@ -12,11 +12,7 @@ const LoginAndRecovery = ({user}) => {
             <Item name="2 Step Login" value={user.use_totp ? 'Enabled' : 'Disabled'}
                   selector={user.use_totp ? 'Disable' : 'Enable'}
                   action={() => {
-                      if (user.use_totp) {
-                          // Disable 2-Step Login
-                      } else {
-                          dispatch(renderModal({id: 'toggle_two_step_login'}))
-                      }
+                      dispatch(renderModal({id: 'toggle_two_step_login'}))
                   }}/>
             <Item name="Password" value="********" action={() => {
                 console.log("Done")

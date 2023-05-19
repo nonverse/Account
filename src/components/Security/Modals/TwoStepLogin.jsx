@@ -19,13 +19,17 @@ const TwoStepLogin = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        if (user.use_totp) {
+            return console.log("Disable TOTP")
+        }
+
         setTimeout(() => {
             setLoading({
                 ...loading,
                 modal: false
             })
         }, 300)
-    })
+    }, [])
 
     return (
         <ScreenModal id="two-step-login" heading="Two Step Login" subHeading="Secure your account with 2 Step Login" loading={loading.modal}>
