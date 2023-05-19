@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import {closeModal} from "../state/app/modal";
 import {motion} from "framer-motion";
 
-const ScreenModal = ({heading, subHeading, children}) => {
+const ScreenModal = ({id, heading, subHeading, children}) => {
 
     const dispatch = useDispatch()
 
@@ -30,7 +30,7 @@ const ScreenModal = ({heading, subHeading, children}) => {
                     <h2>{subHeading}</h2>
                 </div>
             </div>
-            <div className="content">
+            <div className="content" id={id}>
                 {children}
             </div>
         </motion.div>
