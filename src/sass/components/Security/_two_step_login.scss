@@ -8,6 +8,17 @@
     margin-top: .5rem;
   }
 
+  #totp-text {
+    margin: 2rem 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    p {
+      width: 80%;
+      color: rgba($font-color, .5);
+    }
+  }
+
   .form-wrapper {
     width: 30%;
   }
