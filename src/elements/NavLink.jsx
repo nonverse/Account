@@ -1,7 +1,11 @@
 import {NavLink as ReactNavLink} from "react-router-dom";
 import {motion} from "framer-motion";
+import {useDispatch} from "react-redux";
+import {closeModal} from "../state/app/modal";
 
 const NavLink = ({to, children}) => {
+
+    const dispatch = useDispatch()
 
     const variants = {
         active: {
@@ -21,7 +25,9 @@ const NavLink = ({to, children}) => {
     }
 
     return (
-        <ReactNavLink className="nav-link" to={to}>
+        <ReactNavLink className="nav-link" to={to} onClick={() => {
+            dispatch(closeModal())
+        }}>
             {({isActive}) => (
                 <motion.span
                     animate={isActive ? 'active' : 'inactive'}
