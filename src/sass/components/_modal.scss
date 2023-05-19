@@ -13,6 +13,11 @@
     background-color: $main;
     overflow: hidden;
 
+    .screen-modal-loader {
+      width: 40vw;
+      height: 80vh;
+    }
+
     .screen-modal-heading {
       width: 40vw;
       position: relative;
