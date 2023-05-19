@@ -10,6 +10,26 @@ class validate {
         return error
     }
 
+    password(value, blacklist) {
+        let error;
+        if (!value) {
+            error = "This field is required"
+        }
+        if (value.length < 8) {
+            error = "Password must contain at least 8 characters"
+        }
+
+        // TODO Other password integrity checks
+
+        blacklist.forEach(item => {
+            if (value.toLowerCase().includes(item.toLowerCase())) {
+                error = "Password must not contain personal information"
+            }
+        })
+
+        return error
+    }
+
     require(value, min, max) {
         let error;
         if (!value) {
