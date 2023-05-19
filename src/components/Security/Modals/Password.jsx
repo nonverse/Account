@@ -6,6 +6,7 @@ import validate from "../../../scripts/validate";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import InLineButton from "../../../elements/InLineButton";
+import {closeModal} from "../../../state/app/modal";
 
 const Password = () => {
 
@@ -20,17 +21,23 @@ const Password = () => {
                 password: '',
                 password_confirmation: ''
             }} onSubmit={(values) => {
-
+                setLoading(true)
+                setTimeout(() => {
+                    setLoading(false)
+                    dispatch(closeModal())
+                }, 500)
             }}>
                 {({values, errors}) => (
-                    <Form id="screen-modal-form">
+                    <Form id="screen-modal-form" loading={loading}>
                         <Field password={!showPassword} name="password" label="New password"
-                               validate={value => validate.require(value, 8)}
+                               validate={value => validate.password(value, [user.name_first, user.name_last, user.username, user.email])}
                                error={errors.password}/>
                         <Field password={!showPassword} name="password_confirmation" label="Confirm new password"
                                validate={value => validate.confirmation(value, values.password)}
                                error={errors.password_confirmation}/>
-                        <InLineButton onClick={() => {setShowPassword(!showPassword)}}>Show</InLineButton>
+                        <InLineButton id="show-password" onClick={() => {
+                            setShowPassword(!showPassword)
+                        }}>{`${showPassword ? 'Hide' : 'Show'} Password`}</InLineButton>
                         <div id="screen-modal-text">
                             <p>
                                 Choose a strong password to secure your account.
@@ -39,8 +46,7 @@ const Password = () => {
                                 you, such as your
                                 name, username or e-mail.
                                 <br/><br/>
-                                Your password MUST be at least 8 characters long and contain a mix of numeric,
-                                alphanumeric and special
+                                Your password MUST be at least 8 characters long and contain a mix of alphanumeric and special
                                 characters
                             </p>
                         </div>

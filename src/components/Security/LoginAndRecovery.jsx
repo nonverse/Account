@@ -15,7 +15,7 @@ const LoginAndRecovery = ({user}) => {
                       dispatch(renderModal({id: 'toggle_two_step_login'}))
                   }}/>
             <Item name="Password" value="********" action={() => {
-                console.log("Done")
+                dispatch(renderModal({id: 'update_password'}))
             }}/>
             <Item name="Pin" value="****" action={() => {
                 console.log("Done")

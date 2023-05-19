@@ -44,10 +44,11 @@
     #screen-modal-text {
       width: 100%;
       display: flex;
-      text-align: center;
+      text-align: start;
       margin-top: 2rem;
-      justify-content: center;
+      justify-content: start;
       margin-bottom: 2rem;
+      margin-left: 5px;
 
       p {
         width: 80%;

@@ -7,6 +7,7 @@ import Gender from "./PersonalInfo/Modals/Gender";
 import Email from "./PersonalInfo/Modals/Email";
 import Phone from "./PersonalInfo/Modals/Phone";
 import TwoStepLogin from "./Security/Modals/TwoStepLogin";
+import Password from "./Security/Modals/Password";
 
 const ModalPortal = () => {
 
@@ -30,7 +31,8 @@ const ModalPortal = () => {
         'update_phone': <Phone/>,
 
         // Security
-        'toggle_two_step_login': <TwoStepLogin/>
+        'toggle_two_step_login': <TwoStepLogin/>,
+        'update_password': <Password/>
     }
 
     return (
