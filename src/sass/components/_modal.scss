@@ -41,6 +41,20 @@
       }
     }
 
+    #screen-modal-text {
+      width: 100%;
+      display: flex;
+      text-align: center;
+      margin-top: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+
+      p {
+        width: 80%;
+        color: rgba($font-color, .5);
+      }
+    }
+
     #screen-modal-form {
       button[type="submit"] {
         background: none;
