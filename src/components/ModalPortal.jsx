@@ -6,6 +6,7 @@ import DateOfBirth from "./PersonalInfo/Modals/DateOfBirth";
 import Gender from "./PersonalInfo/Modals/Gender";
 import Email from "./PersonalInfo/Modals/Email";
 import Phone from "./PersonalInfo/Modals/Phone";
+import TwoStepLogin from "./Security/Modals/TwoStepLogin";
 
 const ModalPortal = () => {
 
@@ -17,15 +18,19 @@ const ModalPortal = () => {
      *
      * eg. dispatch(renderModal(id: modalKey, data: {optionalModalData}))
      *
-     * @type {{modalKey: JSX.Element}}
+     * @type {{modal_key: JSX.Element}}
      */
     const modalArray = {
+        // Personal Info
         'update_name': <Name/>,
         'update_username': <Username/>,
         'update_dob': <DateOfBirth/>,
         'update_gender': <Gender/>,
         'update_email': <Email/>,
         'update_phone': <Phone/>,
+
+        // Security
+        'toggle_two_step_login': <TwoStepLogin/>
     }
 
     return (

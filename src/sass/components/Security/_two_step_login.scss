@@ -1,0 +1,25 @@
+#two-step-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #two-step-text {
+    width: 80%;
+    text-align: center;
+    margin-top: 2rem;
+
+    p {
+      color: rgba($font-color, .5);
+    }
+  }
+
+  #totp-secret {
+    color: rgba($font-color, .5);
+    margin-top: .5rem;
+  }
+
+  .form-wrapper {
+    width: 30%;
+    margin-top: 2rem;
+  }
+}
