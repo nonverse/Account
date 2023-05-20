@@ -8,6 +8,7 @@ import Email from "./PersonalInfo/Modals/Email";
 import Phone from "./PersonalInfo/Modals/Phone";
 import TwoStepLogin from "./Security/Modals/TwoStepLogin";
 import Password from "./Security/Modals/Password";
+import Pin from "./Security/Modals/Pin";
 
 const ModalPortal = () => {
 
@@ -32,7 +33,8 @@ const ModalPortal = () => {
 
         // Security
         'toggle_two_step_login': <TwoStepLogin/>,
-        'update_password': <Password/>
+        'update_password': <Password/>,
+        'update_pin': <Pin/>,
     }
 
     return (

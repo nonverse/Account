@@ -25,6 +25,7 @@ function App() {
             gender: "Male",
             admin: 0,
             use_totp: 0,
+            use_pin: 0,
         }))
 
         //Temporary to imitate API fetch

@@ -17,8 +17,8 @@ const LoginAndRecovery = ({user}) => {
             <Item name="Password" value="********" action={() => {
                 dispatch(renderModal({id: 'update_password'}))
             }}/>
-            <Item name="Pin" value="****" action={() => {
-                console.log("Done")
+            <Item name="Pin" value={`${user.use_pin ? '****' : 'No Pin'}`} action={() => {
+                dispatch(renderModal({id: 'update_pin'}))
             }}/>
             <Item name="Recovery Email" value="isuru2003@yahoo.com" action={() => {
                 console.log("Done")
