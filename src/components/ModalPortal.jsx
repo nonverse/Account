@@ -9,6 +9,7 @@ import Phone from "./PersonalInfo/Modals/Phone";
 import TwoStepLogin from "./Security/Modals/TwoStepLogin";
 import Password from "./Security/Modals/Password";
 import Pin from "./Security/Modals/Pin";
+import RecoveryEmail from "./Security/Modals/RecoveryEmail";
 
 const ModalPortal = () => {
 
@@ -35,6 +36,7 @@ const ModalPortal = () => {
         'toggle_two_step_login': <TwoStepLogin/>,
         'update_password': <Password/>,
         'update_pin': <Pin/>,
+        'update_recovery_email': <RecoveryEmail/>,
     }
 
     return (

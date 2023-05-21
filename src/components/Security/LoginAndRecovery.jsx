@@ -20,10 +20,10 @@ const LoginAndRecovery = ({user}) => {
             <Item name="Pin" value={`${user.use_pin ? '****' : 'No Pin'}`} action={() => {
                 dispatch(renderModal({id: 'update_pin'}))
             }}/>
-            <Item name="Recovery Email" value="isuru2003@yahoo.com" action={() => {
-                console.log("Done")
+            <Item name="Recovery Email" value={user.recovery.email} action={() => {
+                dispatch(renderModal({id: 'update_recovery_email'}))
             }}/>
-            <Item name="Recovery Phone" value="0425 158 685" action={() => {
+            <Item name="Recovery Phone" value={user.recovery.phone} action={() => {
                 console.log("Done")
             }}/>
         </Sector>
