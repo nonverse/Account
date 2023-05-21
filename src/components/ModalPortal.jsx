@@ -10,6 +10,7 @@ import TwoStepLogin from "./Security/Modals/TwoStepLogin";
 import Password from "./Security/Modals/Password";
 import Pin from "./Security/Modals/Pin";
 import RecoveryEmail from "./Security/Modals/RecoveryEmail";
+import RecoveryPhone from "./Security/Modals/RecoveryPhone";
 
 const ModalPortal = () => {
 
@@ -37,6 +38,7 @@ const ModalPortal = () => {
         'update_password': <Password/>,
         'update_pin': <Pin/>,
         'update_recovery_email': <RecoveryEmail/>,
+        'update_recovery_phone': <RecoveryPhone/>,
     }
 
     return (

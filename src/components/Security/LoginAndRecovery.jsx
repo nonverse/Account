@@ -24,7 +24,7 @@ const LoginAndRecovery = ({user}) => {
                 dispatch(renderModal({id: 'update_recovery_email'}))
             }}/>
             <Item name="Recovery Phone" value={user.recovery.phone} action={() => {
-                console.log("Done")
+                dispatch(renderModal({id: 'update_recovery_phone'}))
             }}/>
         </Sector>
     )
