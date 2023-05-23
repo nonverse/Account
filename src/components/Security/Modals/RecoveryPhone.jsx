@@ -49,14 +49,16 @@ const RecoveryPhone = () => {
                                         key={`phone-country-${country.name}`}>{`${country.dial_code} ${country.name}`}</option>
                                 ))}
                             </Select>
-                            <Field name="phone" label="Recovery Phone" validate={value => validate.require(value, 4, 12)}
+                            <Field name="phone" label="Recovery Phone"
+                                   validate={value => validate.require(value, 4, 12)}
                                 // TODO Better & complete phone number validation
                                    error={errors.phone ? 'Please enter a valid phone number' : ''}/>
                         </div>
                         <div id="screen-modal-text">
                             <p>
                                 <p>
-                                    Adding a recovery phone number helps you re-gain access to your account in the event that
+                                    Adding a recovery phone number helps you re-gain access to your account in the event
+                                    that
                                     you lose access to your primary e-mail and phone
                                     <br/>
                                     <br/>
