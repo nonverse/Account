@@ -37,7 +37,12 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'user' => [
+                'name_first' => 'Isuru',
+                'name_last' => 'Abhayaratne',
+                'phone' => '+61-451 188 191',
+                'dob' => "2003-9-16"
+            ]
         ]);
     }
 }
