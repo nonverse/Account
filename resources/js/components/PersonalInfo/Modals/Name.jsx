@@ -7,10 +7,11 @@ import validate from "../../../scripts/validate";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import {useState} from "react";
+import {usePage} from "@inertiajs/react";
 
 const Name = () => {
 
-    const user = useSelector(state => state.user.value)
+    const {user} = usePage().props
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
@@ -42,4 +43,4 @@ const Name = () => {
     )
 }
 
-export default Name 
+export default Name

@@ -13,5 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{path?}', 'app')
-    ->where('path', '.*');
+Route::get('personal-info', [\App\Http\Controllers\Pages\PersonalInfoController::class, 'show']);
