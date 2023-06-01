@@ -1,4 +1,4 @@
-import Logo from "@/elements/Logo.jsx";
+import Logo from "../elements/Logo.jsx";
 import Navigation from "./Navigation.jsx";
 import ModalPortal from "./ModalPortal.jsx";
 import {BrowserRouter} from "react-router-dom";

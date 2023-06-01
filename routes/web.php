@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('personal-info', [\App\Http\Controllers\Pages\PersonalInfoController::class, 'show']);
+Route::inertia('personal-info', 'PersonalInfo/PersonalInfo');
+Route::inertia('data-and-privacy', 'UnderConstruction');

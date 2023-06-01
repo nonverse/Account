@@ -2,9 +2,11 @@ import {NavLink as ReactNavLink} from "react-router-dom";
 import {motion} from "framer-motion";
 import {useDispatch} from "react-redux";
 import {closeModal} from "../state/app/modal";
+import {Link, usePage} from "@inertiajs/react";
 
 const NavLink = ({to, children}) => {
 
+    const {url} = usePage()
     const dispatch = useDispatch()
 
     const variants = {
@@ -25,18 +27,16 @@ const NavLink = ({to, children}) => {
     }
 
     return (
-        <ReactNavLink className="nav-link" to={to} onClick={() => {
+        <Link className="nav-link" href={to} onClick={() => {
             dispatch(closeModal())
         }}>
-            {({isActive}) => (
-                <motion.span
-                    animate={isActive ? 'active' : 'inactive'}
-                    variants={variants}
-                >
-                    {children}
-                </motion.span>
-            )}
-        </ReactNavLink>
+            <motion.span
+                animate={(url === to) ? 'active' : 'inactive'}
+                variants={variants}
+            >
+                {children}
+            </motion.span>
+        </Link>
     )
 }
 
