@@ -17,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@inertiajs/react": "^1.0.7",
         "@reduxjs/toolkit": "^1.9.5",
         "formik": "^2.4.0",
         "framer-motion": "^10.12.16",
