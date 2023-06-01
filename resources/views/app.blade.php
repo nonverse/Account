@@ -12,7 +12,7 @@
 </head>
 <body>
 @inertia
-<div id="root"></div>
+<div id="app"></div>
 <script defer src="../js/app.js"></script>
 </body>
 </html>
