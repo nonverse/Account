@@ -2,13 +2,28 @@
 
 namespace App\Services;
 
+use App\Contracts\Repository\RefreshTokenRepositoryInterface;
 use Carbon\CarbonImmutable;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AccessTokenService
 {
+    /**
+     * @var RefreshTokenRepositoryInterface
+     */
+    private RefreshTokenRepositoryInterface $refreshTokenRepository;
+
+    public function __construct(
+        RefreshTokenRepositoryInterface $refreshTokenRepository
+    )
+    {
+        $this->refreshTokenRepository = $refreshTokenRepository;
+    }
+
     /**
      * Get access token using authorization code
      *
@@ -55,6 +70,7 @@ class AccessTokenService
      */
     protected function setTokens(Request $request, Response $response): void
     {
+        $user = (array)JWT::decode($request->cookie('user_session'), new Key(config('auth.public_key'), 'RS256'));
         /**
          * Set access token and expiry in an encrypted session store
          */
@@ -62,5 +78,16 @@ class AccessTokenService
             'token_value' => $response['access_token'],
             'token_expiry' => CarbonImmutable::createFromTimestamp(time() + $response['expires_in'])
         ]);
+
+        /**
+         * If the auth server returned an refresh token (If this is the first time the application has
+         * requested an access token), Store the refresh token in database
+         */
+        if (array_key_exists('refresh_token', json_decode($response->body(), true))) {
+            $this->refreshTokenRepository->create([
+                'user_id' => $user['sub'],
+                'token' => $response['refresh_token']
+            ]);
+        }
     }
 }
