@@ -18,6 +18,8 @@ return [
         'passwords' => 'users',
     ],
 
+    'public_key' => file_get_contents('../storage/oauth-public.key'),
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards

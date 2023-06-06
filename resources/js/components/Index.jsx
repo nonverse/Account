@@ -9,6 +9,7 @@ import {updateUser} from "../state/user";
 import Loader from "./Loader";
 import ModalPortal from "./ModalPortal";
 import store from "../state/store.js";
+import Api from "@/scripts/api.js";
 
 function Index() {
 
@@ -30,10 +31,20 @@ function Index() {
             use_pin: 0,
         }))
 
-        //Temporary to imitate API fetch
-        setTimeout(() => {
-            setInitialised(true)
-        }, 500)
+        Api.initialise()
+            .then(response => {
+                setInitialised(true)
+                console.log(response.data)
+            })
+            .catch(e => {
+                switch (e.response.status) {
+                    case 401:
+                        window.location = e.response.data.data.auth_url
+                        break
+                    default:
+                        break
+                }
+            })
     }, [dispatch])
 
     return (
