@@ -62,6 +62,42 @@ class AccessTokenService
     }
 
     /**
+     * Get access token using refresh token
+     *
+     * @param Request $request
+     * @param $refreshToken
+     * @return array|true[]
+     */
+    public function usingRefreshToken(Request $request, $refreshToken): array
+    {
+        /**
+         * Request access token using refresh token
+         */
+        $response = Http::post(env('AUTH_SERVER') . 'oauth/token', [
+            'refresh_token' => $refreshToken->token,
+            'grant_type' => 'authorization_code',
+            'client_id' => env('OAUTH_CLIENT_ID'),
+            'client_secret' => env('OAUTH_CLIENT_SECRET'),
+        ]);
+
+        if (!$response->successful()) {
+            return [
+                'success' => false,
+                ...json_decode($response->body(), true)
+            ];
+        }
+
+        /**
+         * Set tokens
+         */
+        $this->setTokens($request, $response);
+
+        return [
+            'success' => true,
+        ];
+    }
+
+    /**
      * Set tokens
      *
      * @param Request $request

@@ -66,7 +66,7 @@ class ApiController extends Controller
              * Get user's refresh token from database
              */
             $refreshToken = $this->refreshTokenRepository->getUsingUserId($user['sub']);
-            //TODO Get access token using refresh token
+            return new JsonResponse($this->accessTokenService->usingRefreshToken($request, $refreshToken));
         } catch (ExpiredException $e) {
             /**
              * If authentication is invalid (expired), request authorization
