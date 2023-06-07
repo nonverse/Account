@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Application;
 use App\Contracts\Repository\RefreshTokenRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Services\AccessTokenService;
+use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -61,6 +63,18 @@ class ApiController extends Controller
              * Decode JWT containing user authentication details
              */
             $user = (array)JWT::decode($jwt, new Key(config('auth.public_key'), 'RS256'));
+
+            /**
+             * If an unexpired access token exists in session already, no need to get new access token
+             */
+            if ($accessToken = $request->session()->get('access_token')) {
+                if ($accessToken['token_expiry'] instanceof CarbonInterface && $accessToken['token_expiry']->isAfter(CarbonImmutable::now())) {
+                    // TODO calculate time remaining until expiry and get new token when expires
+                    return new JsonResponse([
+                        'success' => true
+                    ]);
+                }
+            }
 
             /**
              * Get user's refresh token from database
