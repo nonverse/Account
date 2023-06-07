@@ -1,6 +1,6 @@
 import Logo from "../elements/Logo";
 import Navigation from "./Navigation";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, useNavigate} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Router from "./Router";
 import {useEffect, useState} from "react";
@@ -17,24 +17,25 @@ function Index() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // Local test user
-        dispatch(updateUser({
-            email: 'isuru2003a@gmail.com',
-            name_first: 'Isuru',
-            name_last: 'Abhayaratne',
-            username: 'Isuru_A',
-            phone: '+61-451 188 191',
-            dob: "2003-9-16",
-            gender: "Male",
-            admin: 0,
-            use_totp: 0,
-            use_pin: 0,
-        }))
-
         Api.initialise()
             .then(response => {
-                setInitialised(true)
-                console.log(response.data)
+                if (response.data.success) {
+                    window.history.replaceState(null, document.title, window.location.pathname)
+                    // Local test user
+                    dispatch(updateUser({
+                        email: 'isuru2003a@gmail.com',
+                        name_first: 'Isuru',
+                        name_last: 'Abhayaratne',
+                        username: 'Isuru_A',
+                        phone: '+61-451 188 191',
+                        dob: "2003-9-16",
+                        gender: "Male",
+                        admin: 0,
+                        use_totp: 0,
+                        use_pin: 0,
+                    }))
+                    setInitialised(true)
+                }
             })
             .catch(e => {
                 switch (e.response.status) {
