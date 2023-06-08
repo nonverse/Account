@@ -7,6 +7,7 @@ use App\Services\AccessTokenService;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 use Closure;
+use Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Illuminate\Http\Request;
@@ -44,11 +45,16 @@ class RefreshAccessToken
     public function handle(Request $request, Closure $next): Response
     {
         $accessToken = $request->session()->get('access_token');
-        $user = (array)JWT::decode($request->cookie('user_session'), new Key(config('oauth.public_key'), 'RS256'));
-        if ($accessToken['token_expiry'] instanceof CarbonInterface) {
-            if ($accessToken['token_expiry']->isAfter(CarbonImmutable::now()->addMinute()) || $accessToken['token_expiry']->eq(CarbonImmutable::now()->addMinute())) {
-                $this->accessTokenService->usingRefreshToken($request, $this->refreshTokenRepository->getUsingUserId($user['sub']));
+        $user = (array)JWT::decode($request->cookie('user_session'), new Key(config('auth.public_key'), 'RS256'));
+        try {
+            $refreshToken = $this->refreshTokenRepository->getUsingUserId($user['sub']);
+            if ($accessToken['token_expiry'] instanceof CarbonInterface) {
+                if ($accessToken['token_expiry']->isBefore(CarbonImmutable::now()->addMinute()) || $accessToken['token_expiry']->eq(CarbonImmutable::now()->addMinute())) {
+                    $this->accessTokenService->usingRefreshToken($request, $refreshToken);
+                }
             }
+        } catch (Exception) {
+            return $next($request);
         }
         return $next($request);
     }
