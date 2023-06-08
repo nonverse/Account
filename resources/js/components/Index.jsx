@@ -9,7 +9,9 @@ import {updateUser} from "../state/user";
 import Loader from "./Loader";
 import ModalPortal from "./ModalPortal";
 import store from "../state/store.js";
-import Api from "@/scripts/api.js";
+import api from "@/scripts/api.js";
+import InLineButton from "@/elements/InLineButton.jsx";
+import Logout from "@/elements/Logout.jsx";
 
 function Index() {
 
@@ -17,23 +19,14 @@ function Index() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        Api.initialise()
-            .then(response => {
+        api.initialise()
+            .then(async response => {
                 if (response.data.success) {
                     window.history.replaceState(null, document.title, window.location.pathname)
-                    // Local test user
-                    dispatch(updateUser({
-                        email: 'isuru2003a@gmail.com',
-                        name_first: 'Isuru',
-                        name_last: 'Abhayaratne',
-                        username: 'Isuru_A',
-                        phone: '+61-451 188 191',
-                        dob: "2003-9-16",
-                        gender: "Male",
-                        admin: 0,
-                        use_totp: 0,
-                        use_pin: 0,
-                    }))
+                    await api.get('user/store')
+                        .then(response => {
+                            dispatch(updateUser(response.data.data))
+                        })
                     setInitialised(true)
                 }
             })
@@ -60,6 +53,7 @@ function Index() {
                                 <ModalPortal/>
                                 <Router/>
                             </div>
+                            <Logout/>
                         </div>
                     </BrowserRouter>
                 </>
