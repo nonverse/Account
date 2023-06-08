@@ -2,7 +2,7 @@ class Api {
 
     async initialise() {
         const query = new URLSearchParams(window.location.search)
-        return await axios.post('/api/initialize', {
+        return await axios.post('/initialize', {
             code: query.get('code')
         })
     }

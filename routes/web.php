@@ -15,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/{path?}', 'app')
     ->where('path', '.*');
+
+/**
+ * Initialise application
+ */
+Route::post('/initialize', [\App\Http\Controllers\Application\ApiController::class, 'initialize']);
