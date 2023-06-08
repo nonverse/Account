@@ -55,7 +55,7 @@ class ApiController extends Controller
          * The auth server will automatically request the user to login if not already before authorizing the application
          */
         if (!$jwt) {
-            return $this->requestAuthorization();
+            return $this->requestAuthorization($request);
         }
 
         try {
@@ -86,7 +86,7 @@ class ApiController extends Controller
              * If authentication is invalid (expired), request authorization
              * The auth server will automatically request the user to login if not already before authorizing the application
              */
-            return $this->requestAuthorization();
+            return $this->requestAuthorization($request);
         } catch (ModelNotFoundException $e) {
             /**
              * If a refresh token is not found...
@@ -102,7 +102,7 @@ class ApiController extends Controller
                  * It is assumed that the user is logged in at this point. The auth server will still check for an
                  * authenticated user but it is expected that the application will be authorized without requiring login
                  */
-                return $this->requestAuthorization();
+                return $this->requestAuthorization($request);
             }
         }
     }
@@ -111,9 +111,10 @@ class ApiController extends Controller
      * Return the authorization request url.
      * The front-end application will handle the redirect
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    protected function requestAuthorization(): JsonResponse
+    protected function requestAuthorization(Request $request): JsonResponse
     {
         $query = http_build_query([
             'response_type' => 'code',
@@ -121,6 +122,10 @@ class ApiController extends Controller
             'redirect_uri' => env('APP_URL'),
             'scope' => 'test test1',
         ]);
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
 
         return new JsonResponse([
             'success' => false,
