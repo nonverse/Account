@@ -68,8 +68,7 @@ class ApiController extends Controller
              * If an unexpired access token exists in session already, no need to get new access token
              */
             if ($accessToken = $request->session()->get('access_token')) {
-                if ($accessToken['token_expiry'] instanceof CarbonInterface && $accessToken['token_expiry']->isAfter(CarbonImmutable::now())) {
-                    // TODO calculate time remaining until expiry and get new token when expires
+                if ($accessToken['token_expiry'] instanceof CarbonInterface && $accessToken['token_expiry']->isAfter(CarbonImmutable::now()->addMinute())) {
                     return new JsonResponse([
                         'success' => true
                     ]);
