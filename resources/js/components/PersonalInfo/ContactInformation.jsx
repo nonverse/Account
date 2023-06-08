@@ -13,7 +13,7 @@ const ContactInformation = ({user}) => {
                 dispatch(renderModal({id: 'update_email'}))
             }}/>
             {/*TODO Format Phone Number*/}
-            <Item name="Phone" value={user.phone} action={() => {
+            <Item name="Phone" value={user.phone ? user.phone : 'Not provided'} action={() => {
                 dispatch(renderModal({id: 'update_phone'}))
             }}/>
         </Sector>

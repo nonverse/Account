@@ -16,10 +16,10 @@ const AboutYou = ({user}) => {
             <Item name="Username" value={user.username} action={() => {
                 dispatch(renderModal({id: 'update_username'}))
             }}/>
-            <Item name="Date of Birth" value={calendar.formatDate(user.dob, "-")} action={() => {
+            <Item name="Date of Birth" value={user.dob ? calendar.formatDate(user.dob, "-") : 'Not provided'} action={() => {
                 dispatch(renderModal({id: 'update_dob'}))
             }}/>
-            <Item name="Gender" value={user.gender} action={() => {
+            <Item name="Gender" value={user.gender ? user.gender : 'Not provided'} action={() => {
                 dispatch(renderModal({id: 'update_gender'}))
             }}/>
         </Sector>
