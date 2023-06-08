@@ -1,4 +1,6 @@
-class Api {
+import axios from "axios";
+
+class api {
 
     async initialise() {
         const query = new URLSearchParams(window.location.search)
@@ -7,11 +9,23 @@ class Api {
         })
     }
 
+    async get(url) {
+        return await axios.post('/api/forward-request', {
+            method: 'GET',
+            target: 'api',
+            url: url
+        })
+    }
+
+    async post(url, data) {
+        return await axios.post('/api/forward-request', {
+            method: 'POST',
+            target: 'api',
+            url: url,
+            ...data
+        })
+    }
+
 }
 
-export const api = axios.create({
-    baseURL: '/api',
-    withCredentials: true
-})
-
-export default new Api()
+export default new api()

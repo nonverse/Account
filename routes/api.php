@@ -9,3 +9,8 @@ use Illuminate\Support\Facades\Route;
 |
 |
 */
+
+/**
+ * Forwards API requests
+ */
+Route::post('/forward-request', [\App\Http\Controllers\Application\ForwardRequestController::class, 'forward']);
