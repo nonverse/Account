@@ -9,51 +9,61 @@
 
 // Index Config
 * {
-  font-family: $font-family-sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: $font-family-sans-serif;
+    margin: 0;
+    padding: 0;
 
-  font-size: 16px;
-  @media (max-width: 1920px) {
-    font-size: 14px;
-  }
-  @media (max-width: 1280px) {
-    font-size: 10px;
-  }
-  @media (max-width: 640px) {
-    font-size: 8px;
-  }
-
-  body {
-    background-color: $body-bg;
-
-    .app {
-      height: 100vh;
-      width: 100vw;
-
-      .container {
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 3fr 7fr;
-
-        .content-wrapper {
-          position: relative;
-          display: flex;
-          justify-content: center;
-        }
-      }
-
-      a {
-        color: $splash;
-      }
+    font-size: 16px;
+    @media (max-width: 1920px) {
+        font-size: 14px;
     }
-  }
+    @media (max-width: 1280px) {
+        font-size: 10px;
+    }
+    @media (max-width: 640px) {
+        font-size: 8px;
+    }
 
-  .element-disabled {
-    opacity: .25;
-    pointer-events: none;
-  }
+    body {
+        background-color: $body-bg;
+
+        .app {
+            height: 100vh;
+            width: 100vw;
+
+            .container {
+                height: 100%;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 3fr 7fr;
+
+                .content-wrapper {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                #logout {
+                    color: orangered;
+                    position: absolute;
+                    bottom: 4vh;
+                    margin-left: 2.25vw;
+                    &:hover {
+                        color: rgba($font-color, .5);
+                    }
+                }
+            }
+
+            a {
+                color: $splash;
+            }
+        }
+    }
+
+    .element-disabled {
+        opacity: .25;
+        pointer-events: none;
+    }
 }
 
 // Elements

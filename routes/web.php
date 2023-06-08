@@ -20,3 +20,8 @@ Route::view('/{path?}', 'app')
  * Initialise application
  */
 Route::post('/initialize', [\App\Http\Controllers\Application\ApiController::class, 'initialize']);
+
+/**
+ * Logout user from application
+ */
+Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
