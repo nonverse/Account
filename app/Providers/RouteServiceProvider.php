@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
-            Route::middleware('web')
+            Route::middleware(['web', 'token'])
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
         });
