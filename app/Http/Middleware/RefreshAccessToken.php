@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Contracts\Repository\RefreshTokenRepositoryInterface;
+use App\Http\Controllers\Application\ApiController;
 use App\Services\AccessTokenService;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
@@ -45,7 +46,15 @@ class RefreshAccessToken
     public function handle(Request $request, Closure $next): Response
     {
         $accessToken = $request->session()->get('access_token');
-        $user = (array)JWT::decode($request->cookie('user_session'), new Key(config('auth.public_key'), 'RS256'));
+        $jwt = $request->cookie('user_session');
+        if (!$jwt) {
+            return (new ApiController($this->refreshTokenRepository, $this->accessTokenService))->requestAuthorization($request);
+        }
+        try {
+            $user = (array)JWT::decode($request->cookie('user_session'), new Key(config('auth.public_key'), 'RS256'));
+        } catch (Exception $e) {
+            return (new ApiController($this->refreshTokenRepository, $this->accessTokenService))->requestAuthorization($request);
+        }
         try {
             $refreshToken = $this->refreshTokenRepository->getUsingUserId($user['sub']);
             if ($accessToken['token_expiry'] instanceof CarbonInterface) {

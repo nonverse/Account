@@ -15,6 +15,9 @@ class api {
             target: 'api',
             url: url
         })
+            .catch(e => {
+                this.requestAuthorization(e)
+            })
     }
 
     async post(url, data) {
@@ -24,6 +27,15 @@ class api {
             url: url,
             ...data
         })
+            .catch(e => {
+                this.requestAuthorization(e)
+            })
+    }
+
+    requestAuthorization(e) {
+        if (e.response.status === 401) {
+            window.location = e.response.data.data.auth_url
+        }
     }
 
 }

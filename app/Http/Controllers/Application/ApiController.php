@@ -114,7 +114,7 @@ class ApiController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    protected function requestAuthorization(Request $request): JsonResponse
+    public function requestAuthorization(Request $request): JsonResponse
     {
         $query = http_build_query([
             'response_type' => 'code',
