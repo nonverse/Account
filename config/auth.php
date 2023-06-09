@@ -18,7 +18,17 @@ return [
         'passwords' => 'users',
     ],
 
+    /**
+     * Auth public key
+     */
     'public_key' => file_get_contents('../storage/oauth-public.key'),
+
+    /**
+     * Required OAuth2 access token scopes
+     */
+    'scopes' => [
+        '*'
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -120,7 +120,7 @@ class ApiController extends Controller
             'response_type' => 'code',
             'client_id' => env('OAUTH_CLIENT_ID'),
             'redirect_uri' => env('APP_URL'),
-            'scope' => 'test test1',
+            'scope' => implode(" ", config('auth.scopes')),
         ]);
 
         $request->session()->invalidate();

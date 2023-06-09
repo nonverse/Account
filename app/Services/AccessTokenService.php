@@ -41,7 +41,7 @@ class AccessTokenService
             'redirect_uri' => env('APP_URL'),
             'client_id' => env('OAUTH_CLIENT_ID'),
             'client_secret' => env('OAUTH_CLIENT_SECRET'),
-            'scope' => 'test test1'
+            'scope' => implode(" ", config('auth.scopes')),
         ]);
 
         if (!$response->successful()) {
