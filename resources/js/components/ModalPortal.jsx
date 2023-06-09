@@ -11,6 +11,7 @@ import Password from "./Security/Modals/Password";
 import Pin from "./Security/Modals/Pin";
 import RecoveryEmail from "./Security/Modals/RecoveryEmail";
 import RecoveryPhone from "./Security/Modals/RecoveryPhone";
+import ScreenModal from "@/components/ScreenModal.jsx";
 
 const ModalPortal = () => {
 
@@ -25,6 +26,9 @@ const ModalPortal = () => {
      * @type {{modal_key: JSX.Element}}
      */
     const modalArray = {
+        // Application
+        'logout': <ScreenModal loading={true}/>,
+
         // Personal Info
         'update_name': <Name/>,
         'update_username': <Username/>,
@@ -50,4 +54,4 @@ const ModalPortal = () => {
     )
 }
 
-export default ModalPortal 
+export default ModalPortal
