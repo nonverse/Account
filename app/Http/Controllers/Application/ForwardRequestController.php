@@ -15,11 +15,19 @@ class ForwardRequestController extends Controller
         if ($request->input('target') === 'api') {
 
             if ($request->input('method') === 'GET') {
-                return Http::withToken($accessToken)->get(env('API_SERVER') . $request->input('url'));
+                $response = Http::withToken($accessToken)->get(env('API_SERVER') . $request->input('url'));
+                if ($response->clientError() || $response->serverError()) {
+                    return response($response->body(), $response->status());
+                }
+                return $response;
             }
 
             if ($request->input('method') === 'POST') {
-                return Http::withToken($accessToken)->post(env('API_SERVER') . $request->input('url'));
+                $response = Http::withToken($accessToken)->post(env('API_SERVER') . $request->input('url'), $request->input('data'));
+                if ($response->clientError() || $response->serverError()) {
+                    return response($response->body(), $response->status());
+                }
+                return $response;
             }
         }
     }
