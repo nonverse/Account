@@ -25,7 +25,7 @@ class api {
             method: 'POST',
             target: 'api',
             url: url,
-            ...data
+            data: {...data}
         })
             .catch(e => {
                 this.requestAuthorization(e)
