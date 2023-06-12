@@ -9,6 +9,7 @@ import Select from "../../../elements/Select";
 import helpers from "../../../scripts/helpers/helpers";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
+import api from "@/scripts/api.js";
 
 const DateOfBirth = () => {
 
@@ -55,19 +56,22 @@ const DateOfBirth = () => {
                 dob_month: calendar.months[user.dob.split('-')[1] - 1],
                 dob_day: user.dob.split('-')[2],
                 dob_year: user.dob.split('-')[0]
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading(true)
                 let month = helpers.getObjectKey(calendar.months, values.dob_month)
-                dispatch(
-                    updateUser({
-                        ...user,
-                        dob: `${values.dob_year}-${++month}-${values.dob_day}`
-                    }))
-
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
-                }, 500)
+                await api.post('user/store', {
+                    dob: `${values.dob_year}-${++month}-${values.dob_day}`
+                })
+                    .then(response => {
+                        dispatch(
+                            updateUser({
+                                ...user,
+                                dob: `${values.dob_year}-${month}-${values.dob_day}`
+                            })
+                        )
+                        //setLoading(false)
+                        dispatch(closeModal())
+                    })
             }}>
                 {({values, errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
@@ -78,7 +82,8 @@ const DateOfBirth = () => {
                                     <option key={`dob-month-${month}`}>{month}</option>
                                 ))}
                             </Select>
-                            <Field name="dob_day" label="Day" validate={value => validateDay(value, values.dob_month, values.dob_year)}
+                            <Field name="dob_day" label="Day"
+                                   validate={value => validateDay(value, values.dob_month, values.dob_year)}
                                    error={errors.dob_day}/>
                             <Field name="dob_year" label="Year" validate={validateYear} error={errors.dob_year}/>
                         </div>
@@ -89,4 +94,4 @@ const DateOfBirth = () => {
     )
 }
 
-export default DateOfBirth 
+export default DateOfBirth

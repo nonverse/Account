@@ -7,6 +7,7 @@ import validate from "../../../scripts/validate";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import {useState} from "react";
+import api from "@/scripts/api.js";
 
 const Name = () => {
 
@@ -19,16 +20,17 @@ const Name = () => {
             <Formik initialValues={{
                 name_first: user.name_first,
                 name_last: user.name_last
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading(true)
-                dispatch(updateUser({
-                    ...user,
-                    ...values
-                }))
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
-                }, 500)
+                await api.post('user/store', values)
+                    .then(response => {
+                        dispatch(updateUser({
+                            ...user,
+                            ...values
+                        }))
+                        //setLoading(false)
+                        dispatch(closeModal())
+                    })
             }}>
                 {({errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
@@ -42,4 +44,4 @@ const Name = () => {
     )
 }
 
-export default Name 
+export default Name
