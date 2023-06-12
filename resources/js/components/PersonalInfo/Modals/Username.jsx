@@ -7,6 +7,7 @@ import {Formik} from "formik";
 import validate from "../../../scripts/validate";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
+import api from "@/scripts/api.js";
 
 const Username = () => {
 
@@ -18,16 +19,17 @@ const Username = () => {
         <ScreenModal heading="Username" subHeading="What should other Nonverse users call you?">
             <Formik initialValues={{
                 username: user.username
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading(true)
-                dispatch(updateUser({
-                    ...user,
-                    ...values
-                }))
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
-                }, 500)
+                await api.post('user/store', values)
+                    .then(response => {
+                        dispatch(updateUser({
+                            ...user,
+                            ...values
+                        }))
+                        //setLoading(false)
+                        dispatch(closeModal())
+                    })
             }}>
                 {({errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
@@ -40,4 +42,4 @@ const Username = () => {
     )
 }
 
-export default Username 
+export default Username
