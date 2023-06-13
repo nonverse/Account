@@ -3,6 +3,7 @@ import LoginAndRecovery from "./LoginAndRecovery";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {updateUser} from "../../state/user";
+import api from "@/scripts/api.js";
 
 const Security = () => {
 
@@ -11,16 +12,18 @@ const Security = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(updateUser({
-            ...user,
-            recovery: {
-                email: 'isuru2003@yahoo.com',
-                phone: '+61-425158685'
-            }
-        }))
-        setTimeout(() => {
-            setLoading(false)
-        }, 300)
+        async function initialize() {
+            await api.get('user/security/recovery')
+                .then(response => {
+                    dispatch(updateUser({
+                        ...user,
+                        recovery: response.data.data
+                    }))
+                    setLoading(false)
+                })
+        }
+
+        initialize()
     }, [])
 
     return (
@@ -31,4 +34,4 @@ const Security = () => {
     )
 }
 
-export default Security 
+export default Security
