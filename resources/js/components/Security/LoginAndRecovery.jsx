@@ -20,14 +20,14 @@ const LoginAndRecovery = ({user}) => {
             <Item name="Pin" value={`${user.use_pin ? '****' : 'No Pin'}`} action={() => {
                 dispatch(renderModal({id: 'update_pin'}))
             }}/>
-            <Item name="Recovery Email" value={user.recovery.email} action={() => {
+            <Item name="Recovery Email" value={user.recovery.email ? user.recovery.email : 'Not Provided'} action={() => {
                 dispatch(renderModal({id: 'update_recovery_email'}))
             }}/>
-            <Item name="Recovery Phone" value={user.recovery.phone} action={() => {
+            <Item name="Recovery Phone" value={user.recovery.phone ? user.recovery.phone : 'Not Provided'} action={() => {
                 dispatch(renderModal({id: 'update_recovery_phone'}))
             }}/>
         </Sector>
     )
 }
 
-export default LoginAndRecovery 
+export default LoginAndRecovery
