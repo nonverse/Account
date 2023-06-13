@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
+import api from "@/scripts/api.js";
 
 const TwoStepLogin = () => {
 
@@ -17,24 +18,31 @@ const TwoStepLogin = () => {
         modal: true
     })
     const dispatch = useDispatch()
+    const [twoStepData, setTwoStepData] = useState({})
 
     useEffect(() => {
         if (user.use_totp) {
             return console.log("Disable TOTP")
         }
 
-        setTimeout(() => {
-            setLoading({
-                ...loading,
-                modal: false
-            })
-        }, 300)
+        async function initialize() {
+            await api.get('user/security/two-step')
+                .then(response => {
+                    setTwoStepData(response.data.data)
+                    setLoading({
+                        ...loading,
+                        modal: false
+                    })
+                })
+        }
+
+        initialize()
     }, [])
 
     return (
         <ScreenModal id="two-step-login" heading="Two Step Login" subHeading="Secure your account with 2 Step Login" loading={loading.modal}>
-            <QRCodeSVG value="https://apple.com/au" bgColor="#ECF0F3" fgColor="#333344"/>
-            <span id="totp-secret">JSFN8SYEG3</span>
+            <QRCodeSVG value={twoStepData.qrcode_data} bgColor="#ECF0F3" fgColor="#333344"/>
+            <span id="totp-secret">{twoStepData.secret}</span>
             <div id="totp-text">
                 <p>
                     Two Step Login, sometimes referred to as Two Factor Authentication (2FA), adds an extra layer of
