@@ -6,6 +6,7 @@ import Select from "../../../elements/Select";
 import {useState} from "react";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
+import api from "@/scripts/api.js";
 
 
 const Gender = () => {
@@ -17,17 +18,20 @@ const Gender = () => {
     return (
         <ScreenModal heading="Gender" subHeading="What do you identify as?">
             <Formik initialValues={{
-                gender: user.gender
-            }} onSubmit={(values) => {
+                gender: user.gender ? user.gender : 'Male'
+            }} onSubmit={async (values) => {
                 setLoading(true)
-                dispatch(updateUser({
-                    ...user,
+                await api.post('user/store', {
                     ...values
-                }))
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
-                }, 500)
+                })
+                    .then(response => {
+                        dispatch(updateUser({
+                            ...user,
+                            ...values
+                        }))
+                        // setLoading(false)
+                        dispatch(closeModal())
+                    })
             }}>
                 {() => (
                     <Form id="screen-modal-form" loading={loading}>
@@ -45,4 +49,4 @@ const Gender = () => {
     )
 }
 
-export default Gender 
+export default Gender
