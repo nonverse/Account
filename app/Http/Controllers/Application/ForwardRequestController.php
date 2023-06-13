@@ -29,6 +29,23 @@ class ForwardRequestController extends Controller
                 }
                 return $response;
             }
+        } else if ($request->input('target') === 'auth') {
+
+            if ($request->input('method') === 'GET') {
+                $response = Http::withToken($accessToken)->get(env('AUTH_SERVER') . $request->input('url'));
+                if ($response->clientError() || $response->serverError()) {
+                    return response($response->body(), $response->status());
+                }
+                return $response;
+            }
+
+            if ($request->input('method') === 'POST') {
+                $response = Http::withToken($accessToken)->post(env('AUTH_SERVER') . $request->input('url'), $request->input('data'));
+                if ($response->clientError() || $response->serverError()) {
+                    return response($response->body(), $response->status());
+                }
+                return $response;
+            }
         }
     }
 }
