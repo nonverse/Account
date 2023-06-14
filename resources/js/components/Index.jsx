@@ -1,6 +1,6 @@
 import Logo from "../elements/Logo";
 import Navigation from "./Navigation";
-import {BrowserRouter, useNavigate} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Router from "./Router";
 import {useEffect, useState} from "react";
@@ -10,23 +10,32 @@ import Loader from "./Loader";
 import ModalPortal from "./ModalPortal";
 import store from "../state/store.js";
 import api from "@/scripts/api.js";
-import InLineButton from "@/elements/InLineButton.jsx";
 import Logout from "@/elements/Logout.jsx";
+import axios from "axios";
+import {renderModal} from "@/state/app/modal.js";
 
 function Index() {
 
     const [initialised, setInitialised] = useState(false)
     const dispatch = useDispatch()
+    const query = new URLSearchParams(window.location.search)
 
     useEffect(() => {
         api.initialise()
             .then(async response => {
                 if (response.data.success) {
-                    window.history.replaceState(null, document.title, window.location.pathname)
                     await api.get('user/store')
                         .then(response => {
                             dispatch(updateUser(response.data.data))
                         })
+                    if (query.get('authorization_token')) {
+                        await axios.post('/api/authorization-token', query)
+                    }
+                    if (query.get('state')) {
+                        const state = JSON.parse(query.get('state'))
+                        dispatch(renderModal(state.modal.value))
+                    }
+                    window.history.replaceState(null, document.title, window.location.pathname)
                     setInitialised(true)
                 }
             })
