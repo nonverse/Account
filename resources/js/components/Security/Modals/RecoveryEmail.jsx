@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import auth from "@/scripts/auth.js";
+import Loader from "@/components/Loader.jsx";
 
 const RecoveryEmail = () => {
 
@@ -50,37 +51,43 @@ const RecoveryEmail = () => {
 
     return (
         <ScreenModal heading="Recovery E-Mail" subHeading="Add an e-mail for emergencies" loading={loading.modal}>
-            <Formik initialValues={{
-                email: user.recovery.email
-            }} onSubmit={(values) => {
-                setLoading(true)
-                dispatch(updateUser({
-                    ...user,
-                    recovery: {
-                        ...user.recovery,
-                        email: values.email
-                    }
-                }))
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
-                }, 500)
-            }}>
-                {({errors}) => (
-                    <Form id="screen-modal-form" loading={loading.form}>
-                        <Field name="email" label="Recovery E-Mail" validate={validateEmail} error={error}/>
-                        <div id="screen-modal-text">
-                            <p>
-                                Adding a recovery email helps you re-gain access to your account in the event that
-                                you lose access to your primary e-mail and phone
-                                <br/>
-                                <br/>
-                                You WILL NOT receive account notifications or promotions via this email
-                            </p>
-                        </div>
-                    </Form>
-                )}
-            </Formik>
+            {user.recovery ? (
+                <Formik initialValues={{
+                    email: user.recovery.email
+                }} onSubmit={(values) => {
+                    setLoading(true)
+                    dispatch(updateUser({
+                        ...user,
+                        recovery: {
+                            ...user.recovery,
+                            email: values.email
+                        }
+                    }))
+                    setTimeout(() => {
+                        setLoading(false)
+                        dispatch(closeModal())
+                    }, 500)
+                }}>
+                    {({errors}) => (
+                        <Form id="screen-modal-form" loading={loading.form}>
+                            <Field name="email" label="Recovery E-Mail" validate={validateEmail} error={error}/>
+                            <div id="screen-modal-text">
+                                <p>
+                                    Adding a recovery email helps you re-gain access to your account in the event that
+                                    you lose access to your primary e-mail and phone
+                                    <br/>
+                                    <br/>
+                                    You WILL NOT receive account notifications or promotions via this email
+                                </p>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+            ) : (
+                <div className="screen-modal-await-loader">
+                    <Loader/>
+                </div>
+            )}
         </ScreenModal>
     )
 }

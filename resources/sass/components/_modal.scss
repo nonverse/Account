@@ -18,6 +18,15 @@
       height: 80vh;
     }
 
+      .screen-modal-await-loader {
+          position: absolute;
+          top: 0;
+          width: 40vw;
+          height: 80vh;
+          background-color: $main;
+          z-index: 2;
+      }
+
     .screen-modal-heading {
       width: 40vw;
       position: relative;
