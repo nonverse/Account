@@ -1,18 +1,22 @@
 import ScreenModal from "../../ScreenModal";
 import {Formik} from "formik";
 import Form from "../../../elements/Form";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Field from "../../../elements/Field";
 import validate from "../../../scripts/validate";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
+import auth from "@/scripts/auth.js";
 
 const RecoveryEmail = () => {
 
     const user = useSelector(state => state.user.value)
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState({
+        form: false,
+        modal: true
+    })
     const dispatch = useDispatch()
 
     function validateEmail(value) {
@@ -28,8 +32,24 @@ const RecoveryEmail = () => {
 
     }
 
+    useEffect(() => {
+        async function initialise() {
+            await auth.authorizationToken('update_recovery_email')
+                .then(response => {
+                    if (response.data.data.success) {
+                        setLoading({
+                            ...loading,
+                            modal: false
+                        })
+                    }
+                })
+        }
+
+        initialise()
+    })
+
     return (
-        <ScreenModal heading="Recovery E-Mail" subHeading="Add an e-mail for emergencies">
+        <ScreenModal heading="Recovery E-Mail" subHeading="Add an e-mail for emergencies" loading={loading.modal}>
             <Formik initialValues={{
                 email: user.recovery.email
             }} onSubmit={(values) => {
@@ -47,7 +67,7 @@ const RecoveryEmail = () => {
                 }, 500)
             }}>
                 {({errors}) => (
-                    <Form id="screen-modal-form" loading={loading}>
+                    <Form id="screen-modal-form" loading={loading.form}>
                         <Field name="email" label="Recovery E-Mail" validate={validateEmail} error={error}/>
                         <div id="screen-modal-text">
                             <p>
@@ -65,4 +85,4 @@ const RecoveryEmail = () => {
     )
 }
 
-export default RecoveryEmail 
+export default RecoveryEmail

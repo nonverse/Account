@@ -3,32 +3,58 @@ import {Formik} from "formik";
 import Form from "../../../elements/Form";
 import Field from "../../../elements/Field";
 import validate from "../../../scripts/validate";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import InLineButton from "../../../elements/InLineButton";
 import {closeModal} from "../../../state/app/modal";
+import auth from "@/scripts/auth.js";
 
 const Password = () => {
 
     const user = useSelector(state => state.user.value)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState({
+        form: false,
+        modal: true
+    })
     const [showPassword, setShowPassword] = useState(false)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        async function initialise() {
+            await auth.authorizationToken('update_password')
+                .then(response => {
+                    if (response.data.data.success) {
+                        setLoading({
+                            ...loading,
+                            modal: false
+                        })
+                    }
+                })
+        }
+
+        initialise()
+    })
+
     return (
-        <ScreenModal heading="Password" subHeading="Create a password for your account">
+        <ScreenModal heading="Password" subHeading="Create a password for your account" loading={loading.modal}>
             <Formik initialValues={{
                 password: '',
                 password_confirmation: ''
             }} onSubmit={(values) => {
-                setLoading(true)
+                setLoading({
+                    ...loading,
+                    form: true
+                })
                 setTimeout(() => {
-                    setLoading(false)
+                    setLoading({
+                        ...loading,
+                        form: false
+                    })
                     dispatch(closeModal())
                 }, 500)
             }}>
                 {({values, errors}) => (
-                    <Form id="screen-modal-form" loading={loading}>
+                    <Form id="screen-modal-form" loading={loading.form}>
                         <Field password={!showPassword} name="password" label="New password"
                                validate={value => validate.password(value, [user.name_first, user.name_last, user.username, user.email])}
                                error={errors.password}/>
@@ -46,7 +72,8 @@ const Password = () => {
                                 you, such as your
                                 name, username or e-mail.
                                 <br/><br/>
-                                Your password MUST be at least 8 characters long and contain a mix of alphanumeric and special
+                                Your password MUST be at least 8 characters long and contain a mix of alphanumeric and
+                                special
                                 characters
                             </p>
                         </div>
@@ -57,4 +84,4 @@ const Password = () => {
     )
 }
 
-export default Password 
+export default Password

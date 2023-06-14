@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import api from "@/scripts/api.js";
+import auth from "@/scripts/auth.js";
 
 const TwoStepLogin = () => {
 
@@ -26,13 +27,16 @@ const TwoStepLogin = () => {
         }
 
         async function initialize() {
-            await api.get('user/security/two-step')
-                .then(response => {
-                    setTwoStepData(response.data.data)
-                    setLoading({
-                        ...loading,
-                        modal: false
-                    })
+            await auth.authorizationToken('update_two_step_login')
+                .then(async response => {
+                    await api.get('user/security/two-step')
+                        .then(response => {
+                            setTwoStepData(response.data.data)
+                            setLoading({
+                                ...loading,
+                                modal: false
+                            })
+                        })
                 })
         }
 
@@ -40,7 +44,8 @@ const TwoStepLogin = () => {
     }, [])
 
     return (
-        <ScreenModal id="two-step-login" heading="Two Step Login" subHeading="Secure your account with 2 Step Login" loading={loading.modal}>
+        <ScreenModal id="two-step-login" heading="Two Step Login" subHeading="Secure your account with 2 Step Login"
+                     loading={loading.modal}>
             <QRCodeSVG value={twoStepData.qrcode_data} bgColor="#ECF0F3" fgColor="#333344"/>
             <span id="totp-secret">{twoStepData.secret}</span>
             <div id="totp-text">
