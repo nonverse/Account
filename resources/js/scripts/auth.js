@@ -1,7 +1,19 @@
 import axios from "axios";
 import api from "@/scripts/api.js";
+import store from "@/state/store.js";
 
 class auth {
+
+    async authorizationToken(actionId) {
+        return await axios.post('/api/authorization-token/check', {
+            action_id: actionId
+        })
+            .catch(e => {
+                if (e.response.status === 401) {
+                    window.location = `https://auth.nonverse.test/authorize?host=${window.location.host}&resource=${window.location.pathname}&state=${JSON.stringify(store.getState().application)}&action_id=${actionId}`
+                }
+            })
+    }
 
     async get(url) {
         return await axios.post('/api/forward-request', {
