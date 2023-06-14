@@ -20,7 +20,6 @@ const Phone = () => {
         modal: true
     })
     const dispatch = useDispatch()
-    const country = helpers.getObjectItem(world.countries, 'dial_code', user.phone.split('-')[0])
 
     useEffect(() => {
         async function initialise() {
@@ -41,8 +40,8 @@ const Phone = () => {
     return (
         <ScreenModal heading="Phone" subHeading="What's your phone number?" loading={loading.modal}>
             <Formik initialValues={{
-                phone_country: `${country.dial_code} ${country.name}`,
-                phone: user.phone.split('-')[1]
+                phone_country: user.phone ? `${helpers.getObjectItem(world.countries, 'dial_code', user.phone.split('-')[0]).dial_code} ${helpers.getObjectItem(world.countries, 'dial_code', user.phone.split('-')[0]).name}` : '+61 Australia',
+                phone: user.phone ? user.phone.split('-')[1] : ''
             }} onSubmit={(values) => {
                 setLoading(true)
 
@@ -66,7 +65,7 @@ const Phone = () => {
                                 ))}
                             </Select>
                             <Field name="phone" label="Phone" validate={value => validate.require(value, 4, 12)}
-                                   // TODO Better & complete phone number validation
+                                // TODO Better & complete phone number validation
                                    error={errors.phone ? 'Please enter a valid phone number' : ''}/>
                         </div>
                     </Form>
