@@ -61,19 +61,19 @@ class AuthorizationTokenController extends Controller
         }
 
         /**
-         * Check if authorization token was issued for requested action
-         */
-        if ($token['authorized_action'] !== $request->input('action_id')) {
-            return response('Invalid authorization token', 401);
-        }
-
-        /**
          * Try to decode authorization token and check if it is expired
          */
         try {
-            JWT::decode($token['token_value'], new Key(config('auth.public_key'), 'RS256'));
+            $jwt = (array)JWT::decode($token['token_value'], new Key(config('auth.public_key'), 'RS256'));
         } catch (ExpiredException $e) {
             return response('Authorization token has expired', 401);
+        }
+
+        /**
+         * Check if authorization token was issued for requested action
+         */
+        if ($jwt['aci'] !== $request->input('action_id')) {
+            return response('Invalid authorization token', 401);
         }
 
         return new JsonResponse([
