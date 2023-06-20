@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Forwards API requests
  */
-Route::post('/forward-request', [\App\Http\Controllers\Application\ForwardRequestController::class, 'forward']);
+Route::post('/forward-request', [\App\Http\Controllers\Application\ForwardRequestController::class, 'forward'])->middleware('withauthorization');
 
 Route::prefix('authorization-token')->group(function () {
     Route::post('/', [\App\Http\Controllers\Application\AuthorizationTokenController::class, 'set']);
