@@ -30,6 +30,7 @@ const NavLink = ({to, children}) => {
         }}>
             {({isActive}) => (
                 <motion.span
+                    className="nav-link-active"
                     animate={isActive ? 'active' : 'inactive'}
                     variants={variants}
                 >
