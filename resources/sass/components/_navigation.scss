@@ -30,4 +30,10 @@
             border-radius: 8px;
         }
     }
+
+    .active {
+        span {
+            color: $main !important;
+        }
+    }
 }
