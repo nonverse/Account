@@ -20,12 +20,15 @@ class api {
             })
     }
 
-    async post(url, data) {
+    async post(url, data, withToken) {
         return await axios.post('/api/forward-request', {
             method: 'POST',
             target: 'api',
             url: url,
-            data: {...data}
+            data: {
+                ...data,
+                ...(withToken && {requires_authorization: true})
+            }
         })
             .catch(e => {
                 this.requestAuthorization(e)
