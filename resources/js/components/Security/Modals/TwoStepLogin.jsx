@@ -63,22 +63,21 @@ const TwoStepLogin = () => {
             </div>
             <Formik initialValues={{
                 code: ''
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading({
                     ...loading,
                     form: true
                 })
-                dispatch(updateUser({
-                    ...user,
-                    use_totp: true
-                }))
-                setTimeout(() => {
-                    setLoading({
-                        ...loading,
-                        form: false
+                await api.post('user/security/two-step', values, true)
+                    .then(response => {
+                        if (response.data.data.success) {
+                            dispatch(updateUser({
+                                ...user,
+                                use_totp: true
+                            }))
+                            dispatch(closeModal())
+                        }
                     })
-                    dispatch(closeModal())
-                }, 500)
             }}>
                 {({errors}) => (
                     <Form id="screen-modal-form" loading={loading.form}>
