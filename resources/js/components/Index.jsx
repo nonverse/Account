@@ -10,9 +10,9 @@ import Loader from "./Loader";
 import ModalPortal from "./ModalPortal";
 import store from "../state/store.js";
 import api from "@/scripts/api.js";
-import Logout from "@/elements/Logout.jsx";
 import axios from "axios";
 import {renderModal} from "@/state/app/modal.js";
+import Logout from "@/components/Logout.jsx";
 
 function Index() {
 
