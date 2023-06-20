@@ -42,16 +42,6 @@
                     display: flex;
                     justify-content: center;
                 }
-
-                #logout {
-                    color: orangered;
-                    position: absolute;
-                    bottom: 4vh;
-                    margin-left: 2.25vw;
-                    &:hover {
-                        color: rgba($font-color, .5);
-                    }
-                }
             }
 
             a {
