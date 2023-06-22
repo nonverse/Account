@@ -7,10 +7,9 @@ import Select from "../../../elements/Select";
 import world from "../../../scripts/helpers/world";
 import helpers from "../../../scripts/helpers/helpers";
 import {updateUser} from "../../../state/user";
-import {closeModal} from "../../../state/app/modal";
 import validate from "../../../scripts/validate";
 
-const InputPhone = () => {
+const InputPhone = ({progress, setPhone}) => {
 
     const user = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(false)
@@ -29,13 +28,14 @@ const InputPhone = () => {
                     phone: `${values.phone_country.split(' ')[0]}-${values.phone}`
                 }))
 
+                setPhone(`${values.phone_country.split(' ')[0]}-${values.phone}`)
+
                 setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
+                    progress()
                 }, 500)
             }}>
                 {({errors}) => (
-                    <Form id="screen-modal-form" loading={loading}>
+                    <Form id="screen-modal-form" cta="Continue" loading={loading}>
                         <div id="phone-form">
                             <Select name="phone_country" label="Country">
                                 {world.countries.map(country => (
@@ -43,7 +43,7 @@ const InputPhone = () => {
                                         key={`phone-country-${country.name}`}>{`${country.dial_code} ${country.name}`}</option>
                                 ))}
                             </Select>
-                            <Field name="phone" label="InputPhone" validate={value => validate.require(value, 4, 12)}
+                            <Field name="phone" label="Phone" validate={value => validate.require(value, 4, 12)}
                                 // TODO Better & complete phone number validation
                                    error={errors.phone ? 'Please enter a valid phone number' : ''}/>
                         </div>
