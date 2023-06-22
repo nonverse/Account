@@ -1,17 +1,9 @@
 import {Field, Formik} from "formik";
 import Form from "../../../elements/Form";
-import {useState} from "react";
+import DigitInput from "@/elements/DigitInput.jsx";
+import validate from "@/scripts/validate.js";
 
 const CreatePin = ({user, setPin, progress}) => {
-
-    const [error, setError] = useState('')
-
-    function changeFocus(e) {
-        if (e.target.value.length >= e.target.getAttribute("maxlength")) {
-            setError('')
-            e.target.nextElementSibling.focus();
-        }
-    }
 
     return (
         <>
@@ -26,34 +18,18 @@ const CreatePin = ({user, setPin, progress}) => {
                 )}
             </div>
             <Formik initialValues={{
-                digit_1: '',
-                digit_2: '',
-                digit_3: '',
-                digit_4: ''
+                pin: ''
             }} onSubmit={(values) => {
-                if (Object.values(values).every(value => value !== '')) {
-                    setPin(`${values.digit_1}${values.digit_2}${values.digit_3}${values.digit_4}`)
-                    progress()
-                } else {
-                    setError('Please enter a full 4 digit pin')
-                }
+                setPin({
+                    pin: values.pin
+                })
+                progress()
             }}>
-                {() => (
-                    <Form id="screen-modal-form">
+                {({errors}) => (
+                    <Form id="screen-modal-form" cta="Continue">
                         <div id="pin-form">
-                            <Field type="password" className="pin-digit" name="digit_1" maxLength="1"
-                                   onInput={(e) => changeFocus(e)}/>
-                            <Field type="password" className="pin-digit" name="digit_2" maxLength="1"
-                                   onInput={(e) => changeFocus(e)}/>
-                            <Field type="password" className="pin-digit" name="digit_3" maxLength="1"
-                                   onInput={(e) => changeFocus(e)}/>
-                            <Field type="password" className="pin-digit" name="digit_4" maxLength="1"
-                                   onInput={(e) => {
-                                       e.target.blur()
-                                       setError('')
-                                   }}/>
+                            <DigitInput password name="pin" validate={value => validate.require(value, 4, 4)} error={errors.pin}/>
                         </div>
-                        <span id="pin-error">{error}</span>
                     </Form>
                 )}
             </Formik>

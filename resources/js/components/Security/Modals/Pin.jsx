@@ -9,7 +9,7 @@ const Pin = () => {
 
     const user = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(true)
-    const [pin, setPin] = useState('')
+    const [pin, setPin] = useState({})
     const [state, setState] = useState(0)
     const views = {
         0: <CreatePin user={user} setPin={setPin} progress={progress}/>,
