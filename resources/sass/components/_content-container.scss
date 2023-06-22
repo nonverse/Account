@@ -16,13 +16,13 @@
 
     h1 {
       font-weight: normal;
-      color: $font-color;
+      color: var(--font-color);
       font-size: 1.75rem;
     }
 
     h2 {
       font-weight: normal;
-      color: rgba($font-color, .5);
+      color: rgba(var(--font-color-rgb), .5);
       font-size: 1rem;
       margin-top: .25rem;
     }
@@ -41,12 +41,12 @@
   }
 
   ::-webkit-scrollbar-track {
-    background-color: rgba($main-2, .5);
+    background-color: rgba(var(--main-2-rgb), .5);
     border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: $main-2;
+    background-color: var(--main-2);
     border-radius: 5px;
   }
 }

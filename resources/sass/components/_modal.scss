@@ -10,7 +10,7 @@
   }
 
   .screen-modal {
-    background-color: $main;
+    background-color: var(--main);
     overflow: hidden;
 
     .screen-modal-loader {
@@ -23,7 +23,7 @@
           top: 0;
           width: 40vw;
           height: 80vh;
-          background-color: $main;
+          background-color: var(--main);
           z-index: 2;
       }
 
@@ -42,7 +42,7 @@
         height: 100%;
 
         svg {
-          stroke: rgba($font-color, .5);
+          stroke: rgba(var(--font-color-rgb), .5);
           justify-self: start;
           scale: 1.5;
           cursor: pointer;
@@ -61,7 +61,7 @@
 
       p {
         width: 80%;
-        color: rgba($font-color, .5);
+        color: rgba(var(--font-color-rgb), .5);
       }
     }
 
@@ -76,7 +76,7 @@
         cursor: pointer;
 
         &:hover {
-          color: rgba($font-color, .5);
+          color: rgba(var(--font-color-rgb), .5);
         }
       }
     }

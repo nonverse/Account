@@ -17,7 +17,7 @@
         color: #333344;
 
         span {
-            color: $font-color !important;
+            color: var(--font-color) !important;
         }
 
         .nav-link-active {
@@ -33,7 +33,7 @@
 
     .active {
         span {
-            color: $main !important;
+            color: var(--main) !important;
         }
     }
 }

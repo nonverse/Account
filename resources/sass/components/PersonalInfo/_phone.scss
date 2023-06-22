@@ -14,7 +14,7 @@
     align-items: center;
 
     #phone-verify-text {
-        color: rgba($font-color, .5);
+        color: rgba(var(--font-color-rgb), .5);
         text-align: center;
         margin-bottom: 1rem;
     }

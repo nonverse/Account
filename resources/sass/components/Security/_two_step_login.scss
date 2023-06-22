@@ -4,7 +4,7 @@
   align-items: center;
 
   #totp-secret {
-    color: rgba($font-color, .5);
+    color: rgba(var(--font-color-rgb), .5);
     margin-top: .5rem;
   }
 
@@ -15,7 +15,7 @@
     justify-content: center;
     p {
       width: 80%;
-      color: rgba($font-color, .5);
+      color: rgba(var(--font-color-rgb), .5);
     }
   }
 

@@ -11,14 +11,14 @@
 
         path {
             cursor: pointer;
-            fill: $font-color;
+            fill: var(--font-color);
         }
     }
 
     .nv-logo-title {
         font-weight: normal;
         font-size: 2rem;
-        color: $font-color;
+        color: var(--font-color);
 
         .splash {
             font-size: 2rem;

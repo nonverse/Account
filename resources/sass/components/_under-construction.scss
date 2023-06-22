@@ -11,7 +11,7 @@
   h2 {
     width: 80%;
     font-weight: normal;
-    color: rgba($font-color, .5);
+    color: rgba(var(--font-color-rgb), .5);
     font-size: 1rem;
     text-align: center;
     margin-top: .5rem;
