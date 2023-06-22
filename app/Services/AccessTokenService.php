@@ -35,7 +35,7 @@ class AccessTokenService
         /**
          * Request access token using authorization code
          */
-        $response = Http::post(env('AUTH_SERVER') . 'oauth/token', [
+        $response = Http::post(env('VITE_AUTH_SERVER') . 'oauth/token', [
             'grant_type' => 'authorization_code',
             'code' => $request->input('code',),
             'redirect_uri' => env('APP_URL'),
@@ -73,7 +73,7 @@ class AccessTokenService
         /**
          * Request access token using refresh token
          */
-        $response = Http::post(env('AUTH_SERVER') . 'oauth/token', [
+        $response = Http::post(env('VITE_AUTH_SERVER') . 'oauth/token', [
             'refresh_token' => $refreshToken->token,
             'grant_type' => 'authorization_code',
             'client_id' => env('OAUTH_CLIENT_ID'),

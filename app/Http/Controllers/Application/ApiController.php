@@ -130,7 +130,7 @@ class ApiController extends Controller
         return new JsonResponse([
             'success' => false,
             'data' => [
-                'auth_url' => env('AUTH_SERVER') . 'oauth/authorize?' . $query
+                'auth_url' => env('VITE_AUTH_SERVER') . 'oauth/authorize?' . $query
             ],
             'error' => 'unauthenticated'
         ], 401);

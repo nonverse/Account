@@ -10,7 +10,7 @@ class auth {
         })
             .catch(e => {
                 if (e.response.status === 401) {
-                    return window.location = `https://auth.nonverse.test/authorize?host=${window.location.host}&resource=${window.location.pathname}&state=${JSON.stringify(store.getState().application)}&action_id=${actionId}`
+                    return window.location = `${import.meta.env.VITE_AUTH_SERVER}authorize?host=${window.location.host}&resource=${window.location.pathname}&state=${JSON.stringify(store.getState().application)}&action_id=${actionId}`
                 }
             })
     }

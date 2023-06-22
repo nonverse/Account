@@ -15,7 +15,7 @@ class ForwardRequestController extends Controller
         if ($request->input('target') === 'api') {
 
             if ($request->input('method') === 'GET') {
-                $response = Http::withToken($accessToken)->get(env('API_SERVER') . $request->input('url'));
+                $response = Http::withToken($accessToken)->get(env('VITE_API_SERVER') . $request->input('url'));
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
@@ -23,7 +23,7 @@ class ForwardRequestController extends Controller
             }
 
             if ($request->input('method') === 'POST') {
-                $response = Http::withToken($accessToken)->post(env('API_SERVER') . $request->input('url'), $request->input('data'));
+                $response = Http::withToken($accessToken)->post(env('VITE_API_SERVER') . $request->input('url'), $request->input('data'));
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
@@ -32,7 +32,7 @@ class ForwardRequestController extends Controller
         } else if ($request->input('target') === 'auth') {
 
             if ($request->input('method') === 'GET') {
-                $response = Http::withToken($accessToken)->get(env('AUTH_SERVER') . $request->input('url'));
+                $response = Http::withToken($accessToken)->get(env('VITE_AUTH_SERVER') . $request->input('url'));
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
@@ -40,7 +40,7 @@ class ForwardRequestController extends Controller
             }
 
             if ($request->input('method') === 'POST') {
-                $response = Http::withToken($accessToken)->post(env('AUTH_SERVER') . $request->input('url'), $request->input('data'));
+                $response = Http::withToken($accessToken)->post(env('VITE_AUTH_SERVER') . $request->input('url'), $request->input('data'));
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
