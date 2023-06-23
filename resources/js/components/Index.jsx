@@ -51,7 +51,7 @@ function Index() {
     }, [dispatch])
 
     return (
-        <div className="app">
+        <div className="app light">
             {initialised ?
                 <>
                     <Logo/>
