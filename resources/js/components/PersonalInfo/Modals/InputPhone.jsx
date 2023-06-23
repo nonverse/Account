@@ -8,10 +8,12 @@ import world from "../../../scripts/helpers/world";
 import helpers from "../../../scripts/helpers/helpers";
 import validate from "../../../scripts/validate";
 import api from "@/scripts/api.js";
+import {closeModal} from "@/state/app/modal.js";
 
 const InputPhone = ({user, progress, setPhone}) => {
 
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -20,6 +22,9 @@ const InputPhone = ({user, progress, setPhone}) => {
                 phone: user.phone ? user.phone.split('-')[1] : ''
             }} onSubmit={async (values) => {
                 setLoading(true)
+                if (user.phone === `${values.phone_country.split(' ')[0]}-${values.phone}`) {
+                    return dispatch(closeModal())
+                }
                 await api.post('auth/send-verification', {
                     channel: 'phone',
                     phone: `${values.phone_country.split(' ')[0]}-${values.phone}`
