@@ -9,11 +9,9 @@ import helpers from "../../../scripts/helpers/helpers";
 import validate from "../../../scripts/validate";
 import api from "@/scripts/api.js";
 
-const InputPhone = ({progress, setPhone}) => {
+const InputPhone = ({user, progress, setPhone}) => {
 
-    const user = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(false)
-    const dispatch = useDispatch()
 
     return (
         <>

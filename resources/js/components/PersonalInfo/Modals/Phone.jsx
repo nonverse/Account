@@ -7,12 +7,13 @@ import VerifyPhone from "@/components/PersonalInfo/Modals/VerifyPhone.jsx";
 
 const Phone = () => {
 
+    const user = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(true)
     const [state, setState] = useState(0)
     const [phone, setPhone] = useState('')
     const views = {
-        0: <InputPhone progress={progress}  setPhone={setPhone}/>,
-        1: <VerifyPhone phone={phone}/>
+        0: <InputPhone user={user} progress={progress} setPhone={setPhone}/>,
+        1: <VerifyPhone user={user} phone={phone}/>
     }
 
     function progress(back) {
