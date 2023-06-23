@@ -6,8 +6,8 @@ import Field from "../../../elements/Field";
 import Select from "../../../elements/Select";
 import world from "../../../scripts/helpers/world";
 import helpers from "../../../scripts/helpers/helpers";
-import {updateUser} from "../../../state/user";
 import validate from "../../../scripts/validate";
+import api from "@/scripts/api.js";
 
 const InputPhone = ({progress, setPhone}) => {
 
@@ -20,19 +20,18 @@ const InputPhone = ({progress, setPhone}) => {
             <Formik initialValues={{
                 phone_country: user.phone ? `${helpers.getObjectItem(world.countries, 'dial_code', user.phone.split('-')[0]).dial_code} ${helpers.getObjectItem(world.countries, 'dial_code', user.phone.split('-')[0]).name}` : '+61 Australia',
                 phone: user.phone ? user.phone.split('-')[1] : ''
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading(true)
-
-                dispatch(updateUser({
-                    ...user,
+                await api.post('auth/send-verification', {
+                    channel: 'phone',
                     phone: `${values.phone_country.split(' ')[0]}-${values.phone}`
-                }))
-
-                setPhone(`${values.phone_country.split(' ')[0]}-${values.phone}`)
-
-                setTimeout(() => {
-                    progress()
-                }, 500)
+                })
+                    .then(response => {
+                        if (response.data.success) {
+                            setPhone(`${values.phone_country.split(' ')[0]}-${values.phone}`)
+                            progress()
+                        }
+                    })
             }}>
                 {({errors}) => (
                     <Form id="screen-modal-form" cta="Continue" loading={loading}>
