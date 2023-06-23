@@ -4,7 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Router from "./Router";
 import {useEffect, useState} from "react";
-import {Provider, useDispatch} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {updateUser} from "../state/user";
 import Loader from "./Loader";
 import ModalPortal from "./ModalPortal";
@@ -13,12 +13,15 @@ import api from "@/scripts/api.js";
 import axios from "axios";
 import {renderModal} from "@/state/app/modal.js";
 import Logout from "@/components/Logout.jsx";
+import cookies from "@/scripts/helpers/cookies.js";
 
 function Index() {
 
     const [initialised, setInitialised] = useState(false)
     const dispatch = useDispatch()
     const query = new URLSearchParams(window.location.search)
+    const settings = useSelector(state => state.application.settings.value)
+    const settingsCookie = cookies.get('settings')
 
     useEffect(() => {
         api.initialise()
@@ -51,7 +54,8 @@ function Index() {
     }, [dispatch])
 
     return (
-        <div className="app light">
+        <div
+            className={`app ${(settings && settings.theme) ? settings.theme : `${settingsCookie ? JSON.parse(settingsCookie).theme : 'system'}`}`}>
             {initialised ?
                 <>
                     <Logo/>
