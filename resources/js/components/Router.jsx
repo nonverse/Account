@@ -3,6 +3,7 @@ import {AnimatePresence} from "framer-motion";
 import UnderConstruction from "./UnderConstruction";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import Security from "./Security/Security";
+import Settings from "@/components/Settings/Settings.jsx";
 
 const Router = () => {
 
@@ -13,6 +14,7 @@ const Router = () => {
             <Routes location={location} key={location.pathname}>
                 <Route path={"/personal-info"} element={<PersonalInfo/>}/>
                 <Route path={"/security"} element={<Security/>}/>
+                <Route path={"/settings"} element={<Settings/>}/>
                 <Route path={"*"} element={<UnderConstruction/>}/>
             </Routes>
         </AnimatePresence>
