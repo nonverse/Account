@@ -37,6 +37,11 @@ const Theme = () => {
                             <option>Dark</option>
                             <option>System</option>
                         </Select>
+                        <div id="screen-modal-text">
+                            <p>
+                                Your preferred theme will be applied across all Nonverse applications that you are logged into.
+                            </p>
+                        </div>
                     </Form>
                 )}
             </Formik>
