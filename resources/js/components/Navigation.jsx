@@ -8,7 +8,7 @@ const Navigation = () => {
             <NavLink to={'/personal-info'}>Personal Info</NavLink>
             <NavLink to={'/data-and-privacy'}>Data & Privacy</NavLink>
             <NavLink to={'/security'}>Security</NavLink>
-            <NavLink to={'/support'}>Support</NavLink>
+            <NavLink to={'/settings'}>Settings</NavLink>
         </nav>
     )
 }
