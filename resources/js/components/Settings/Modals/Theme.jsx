@@ -5,9 +5,9 @@ import helpers from "@/scripts/helpers/helpers.js";
 import Form from "@/elements/Form.jsx";
 import Select from "@/elements/Select.jsx";
 import {useState} from "react";
+import api from "@/scripts/api.js";
 import {updateSettings} from "@/state/app/settings.js";
 import {closeModal} from "@/state/app/modal.js";
-import cookies from "@/scripts/helpers/cookies.js";
 
 const Theme = () => {
 
@@ -19,16 +19,23 @@ const Theme = () => {
         <ScreenModal heading="Theme" subHeading="Choose the theme for your Nonverse applications">
             <Formik initialValues={{
                 theme: (settings && settings.theme) ? helpers.capitaliseFirst(settings.theme) : 'System'
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading(true)
 
-                setTimeout(() => {
-                    dispatch(updateSettings({
-                        ...settings,
-                        theme: values.theme.toLowerCase()
-                    }))
-                    dispatch(closeModal())
-                }, 500)
+                await api.post('user/settings', {
+                    settings: {
+                        theme: values.theme.toLowerCase(),
+                    }
+                })
+                    .then(response => {
+                        if (response.data.success) {
+                            dispatch(updateSettings({
+                                ...settings,
+                                theme: values.theme.toLowerCase()
+                            }))
+                            dispatch(closeModal())
+                        }
+                    })
             }}>
                 {({errors}) => (
                     <Form id="screen-modal-form" loading={loading}>
@@ -39,7 +46,8 @@ const Theme = () => {
                         </Select>
                         <div id="screen-modal-text">
                             <p>
-                                Your preferred theme will be applied across all Nonverse applications that you are logged into.
+                                Your preferred theme will be applied across all Nonverse applications that you are
+                                logged into.
                             </p>
                         </div>
                     </Form>
