@@ -19,7 +19,7 @@ class ForwardRequestController extends Controller
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
-                return $response;
+                return response($response->body())->withHeaders($response->headers());
             }
 
             if ($request->input('method') === 'POST') {
@@ -27,7 +27,7 @@ class ForwardRequestController extends Controller
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
-                return $response;
+                return response($response->body())->withHeaders($response->headers());
             }
         } else if ($request->input('target') === 'auth') {
 
@@ -36,7 +36,7 @@ class ForwardRequestController extends Controller
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
-                return $response;
+                return response($response->body())->withHeaders($response->headers());
             }
 
             if ($request->input('method') === 'POST') {
@@ -44,7 +44,7 @@ class ForwardRequestController extends Controller
                 if ($response->clientError() || $response->serverError()) {
                     return response($response->body(), $response->status());
                 }
-                return $response;
+                return response($response->body())->withHeaders($response->headers());
             }
         }
     }
