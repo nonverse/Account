@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import InLineButton from "../../../elements/InLineButton";
 import {closeModal} from "../../../state/app/modal";
 import auth from "@/scripts/auth.js";
+import api from "@/scripts/api.js";
 
 const Password = () => {
 
@@ -33,25 +34,24 @@ const Password = () => {
         }
 
         initialise()
-    })
+    }, [])
 
     return (
         <ScreenModal heading="Password" subHeading="Create a password for your account" loading={loading.modal}>
             <Formik initialValues={{
                 password: '',
                 password_confirmation: ''
-            }} onSubmit={(values) => {
+            }} onSubmit={async (values) => {
                 setLoading({
                     ...loading,
                     form: true
                 })
-                setTimeout(() => {
-                    setLoading({
-                        ...loading,
-                        form: false
+                await api.post('user/security/password', values, true)
+                    .then(response => {
+                        if (response.data.success) {
+                            dispatch(closeModal())
+                        }
                     })
-                    dispatch(closeModal())
-                }, 500)
             }}>
                 {({values, errors}) => (
                     <Form id="screen-modal-form" loading={loading.form}>
