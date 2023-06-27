@@ -14,6 +14,7 @@ import axios from "axios";
 import {renderModal} from "@/state/app/modal.js";
 import Logout from "@/components/Logout.jsx";
 import cookies from "@/scripts/helpers/cookies.js";
+import {updateSettings} from "@/state/app/settings.js";
 
 function Index() {
 
@@ -27,6 +28,10 @@ function Index() {
         api.initialise()
             .then(async response => {
                 if (response.data.success) {
+                    await api.get('user/settings')
+                        .then(response => {
+                            dispatch(updateSettings(response.data.data))
+                        })
                     await api.get('user/store')
                         .then(response => {
                             dispatch(updateUser(response.data.data))
