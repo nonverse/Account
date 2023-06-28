@@ -1,4 +1,4 @@
-const Item = ({name, value, selector="pencil", action}) => {
+const Item = ({name, value, warn, selector = "pencil", action}) => {
 
 
     return (
@@ -6,6 +6,7 @@ const Item = ({name, value, selector="pencil", action}) => {
             <span className="item-name">{name}</span>
             <div className="item-value">
                 <span>{value}</span>
+                {warn ? <span className="item-warn">({warn})</span> : ''}
                 <div className="item-line"/>
             </div>
             {action ? (
