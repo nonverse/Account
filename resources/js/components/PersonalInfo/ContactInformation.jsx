@@ -9,11 +9,12 @@ const ContactInformation = ({user}) => {
 
     return (
         <Sector heading="Contact Information">
-            <Item name="E-mail" value={user.email} action={() => {
+            <Item name="E-mail" value={user.email} warn={user.email_verified_at ? '' : 'Not verified'} action={() => {
                 dispatch(renderModal({id: 'update_email'}))
             }}/>
             {/*TODO Format Phone Number*/}
-            <Item name="Phone" value={user.phone ? user.phone : 'Not provided'} action={() => {
+            <Item name="Phone" value={user.phone ? user.phone : 'Not provided'}
+                  warn={user.phone ? `${user.phone_verified_at ? '' : 'Not verified'}` : ''} action={() => {
                 dispatch(renderModal({id: 'update_phone'}))
             }}/>
         </Sector>
