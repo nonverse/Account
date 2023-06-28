@@ -36,7 +36,8 @@ const VerifyPhone = ({user, phone}) => {
                         if (response.data.success) {
                             dispatch(updateUser({
                                 ...user,
-                                phone: phone
+                                phone: phone,
+                                phone_verified_at: 'Just now'
                             }))
                             dispatch(closeModal())
                         }
