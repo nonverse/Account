@@ -1,4 +1,4 @@
-import {Field, Formik} from "formik";
+import {Formik} from "formik";
 import Form from "../../../elements/Form";
 import DigitInput from "@/elements/DigitInput.jsx";
 import validate from "@/scripts/validate.js";
@@ -28,7 +28,8 @@ const CreatePin = ({user, setPin, progress}) => {
                 {({errors}) => (
                     <Form id="screen-modal-form" cta="Continue">
                         <div id="pin-form">
-                            <DigitInput password name="pin" validate={value => validate.require(value, 4, 4)} error={errors.pin}/>
+                            <DigitInput password name="pin" validate={value => validate.require(value, 4, 4)}
+                                        error={errors.pin ? 'Please enter a valid pin' : ''}/>
                         </div>
                     </Form>
                 )}
