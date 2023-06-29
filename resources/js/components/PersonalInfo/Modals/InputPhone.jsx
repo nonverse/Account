@@ -22,7 +22,7 @@ const InputPhone = ({user, progress, setPhone}) => {
                 phone: user.phone ? user.phone.split('-')[1] : ''
             }} onSubmit={async (values) => {
                 setLoading(true)
-                if (user.phone === `${values.phone_country.split(' ')[0]}-${values.phone}`) {
+                if ((user.phone === `${values.phone_country.split(' ')[0]}-${values.phone}`) && user.phone_verified_at) {
                     return dispatch(closeModal())
                 }
                 await api.post('auth/send-verification', {
