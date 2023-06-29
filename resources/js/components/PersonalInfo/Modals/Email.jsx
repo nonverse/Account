@@ -5,9 +5,10 @@ import Form from "../../../elements/Form";
 import Field from "../../../elements/Field";
 import validate from "../../../scripts/validate";
 import {Formik} from "formik";
-import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import auth from "@/scripts/auth.js";
+import api from "@/scripts/api.js";
+import {updateUser} from "@/state/user.js";
 
 const Email = () => {
 
@@ -32,22 +33,30 @@ const Email = () => {
         }
 
         initialise()
-    })
+    }, [])
 
     return (
         <ScreenModal heading="E-Mail" subHeading="What's your E-Mail" loading={loading.modal}>
             <Formik initialValues={{
                 email: user.email
-            }} onSubmit={(values) => {
-                setLoading(true)
-                dispatch(updateUser({
-                    ...user,
-                    ...values
-                }))
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(closeModal())
-                }, 500)
+            }} onSubmit={async (values) => {
+                setLoading({
+                    ...loading,
+                    form: true
+                })
+                await api.post('user/store/email', values, true)
+                    .then(response => {
+                        if (response.data.success) {
+                            dispatch(updateUser({
+                                ...user,
+                                email: values.email
+                            }))
+                            dispatch(closeModal())
+                        }
+                    })
+                    .catch(e => {
+                        //
+                    })
             }}>
                 {({errors}) => (
                     <Form id="screen-modal-form" loading={loading.form}>
