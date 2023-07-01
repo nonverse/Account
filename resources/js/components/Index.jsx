@@ -43,7 +43,9 @@ function Index() {
                         const state = JSON.parse(query.get('state'))
                         dispatch(renderModal(state.modal.value))
                     }
-                    window.history.replaceState(null, document.title, window.location.pathname)
+                    if (window.location.pathname !== '/verify') {
+                        window.history.replaceState(null, document.title, window.location.pathname)
+                    }
                     setInitialised(true)
                 }
             })
