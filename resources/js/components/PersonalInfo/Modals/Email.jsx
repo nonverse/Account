@@ -49,7 +49,8 @@ const Email = () => {
                         if (response.data.success) {
                             dispatch(updateUser({
                                 ...user,
-                                email: values.email
+                                email: values.email,
+                                email_verified_at: null
                             }))
                             dispatch(closeModal())
                         }
