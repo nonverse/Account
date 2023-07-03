@@ -26,14 +26,20 @@
     }
 
     .notification-success {
-        border-color: lime;
+        .notification-message {
+            border-color: lime;
+        }
     }
 
     .notification-warning {
-        border-color: orange;
+        .notification-message {
+            border-color: orange;
+        }
     }
 
     .notification-danger {
-        border-color: orangered;
+        .notification-message {
+            border-color: orangered;
+        }
     }
 }
