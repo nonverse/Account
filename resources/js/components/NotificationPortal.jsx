@@ -11,7 +11,7 @@ const NotificationPortal = () => {
             <AnimatePresence mode="wait">
                 {notification ? (
                     <>
-                        {notification.id ? (
+                        {notification.message ? (
                             <Notification>
                                 {notification.message}
                             </Notification>

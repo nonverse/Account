@@ -17,7 +17,7 @@ const Notification = () => {
 
     return (
         <motion.div className={`notification notification-${notification.weight}`}
-                    key={`notification-${notification.id}`}
+                    key={`notification-${notification.message}`}
                     initial={{width: "100%", x: "100%"}}
                     animate={{width: "100%", x: 0}}
                     exit={{width: "100%", x: 0}} // TODO Fix exit animation
