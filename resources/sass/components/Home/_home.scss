@@ -1,0 +1,21 @@
+.messages {
+    display: flex;
+    align-items: start;
+    transform: translateX(-1vw);
+    margin-bottom: 5rem;
+
+    #verify-email {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.home-item {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.home-subtext {
+    color: rgba(var(--font-color-rgb), .25);
+}

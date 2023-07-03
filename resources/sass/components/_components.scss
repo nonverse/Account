@@ -10,10 +10,12 @@
 @import "modal";
 @import "logout";
 @import "notification";
+@import "message-box";
 
 // Pages & Modals
 @import "PersonalInfo/personal-info";
 @import "Security/security";
+@import "Home/home";
 
 //Page Blocks
 @import 'under-construction';
