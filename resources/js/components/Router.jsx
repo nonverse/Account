@@ -5,6 +5,7 @@ import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import Security from "./Security/Security";
 import Settings from "@/components/Settings/Settings.jsx";
 import VerifyEmail from "@/components/VerifyEmail.jsx";
+import Home from "@/components/Home/Home.jsx";
 
 const Router = () => {
 
@@ -14,6 +15,7 @@ const Router = () => {
         <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
                 // Views
+                <Route path={"/"} element={<Home/>}/>
                 <Route path={"/personal-info"} element={<PersonalInfo/>}/>
                 <Route path={"/security"} element={<Security/>}/>
                 <Route path={"/settings"} element={<Settings/>}/>
