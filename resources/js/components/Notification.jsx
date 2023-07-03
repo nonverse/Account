@@ -18,10 +18,10 @@ const Notification = () => {
     return (
         <motion.div className={`notification notification-${notification.weight}`}
                     key={`notification-${notification.message}`}
-                    initial={{width: "100%", x: "100%"}}
-                    animate={{width: "100%", x: 0}}
-                    exit={{width: "100%", x: 0}} // TODO Fix exit animation
-                    transition={{duration: .25}}>
+                    initial={{width: 0, x: "100%", opacity: 0}}
+                    animate={{width: "100%", x: 0, opacity: 1}}
+                    exit={{width: 0, x: 0, opacity: 0}} // TODO Fix exit animation
+                    transition={{duration: .1}}>
             <span className="notification-message">{notification.message}</span>
             <InLineButton onClick={() => {
                 dispatch(closeNotification())
