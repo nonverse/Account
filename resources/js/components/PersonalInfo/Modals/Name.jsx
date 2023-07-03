@@ -8,6 +8,7 @@ import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import {useState} from "react";
 import api from "@/scripts/api.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const Name = () => {
 
@@ -29,6 +30,9 @@ const Name = () => {
                             ...values
                         }))
                         //setLoading(false)
+                        dispatch(sendNotification({
+                            message: 'Your name has been updated',
+                        }))
                         dispatch(closeModal())
                     })
             }}>

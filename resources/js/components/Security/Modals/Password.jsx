@@ -9,6 +9,7 @@ import InLineButton from "../../../elements/InLineButton";
 import {closeModal} from "../../../state/app/modal";
 import auth from "@/scripts/auth.js";
 import api from "@/scripts/api.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const Password = () => {
 
@@ -49,6 +50,9 @@ const Password = () => {
                 await api.post('user/security/password', values, true)
                     .then(response => {
                         if (response.data.success) {
+                            dispatch(sendNotification({
+                                message: 'Your password has been updated',
+                            }))
                             dispatch(closeModal())
                         }
                     })

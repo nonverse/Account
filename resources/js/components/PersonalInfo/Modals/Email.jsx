@@ -9,6 +9,7 @@ import {closeModal} from "../../../state/app/modal";
 import auth from "@/scripts/auth.js";
 import api from "@/scripts/api.js";
 import {updateUser} from "@/state/user.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const Email = () => {
 
@@ -51,6 +52,9 @@ const Email = () => {
                                 ...user,
                                 email: values.email,
                                 email_verified_at: null
+                            }))
+                            dispatch(sendNotification({
+                                message: 'Your e-mail has been updated',
                             }))
                             dispatch(closeModal())
                         }

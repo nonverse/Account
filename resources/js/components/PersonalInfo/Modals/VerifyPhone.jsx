@@ -7,6 +7,7 @@ import api from "@/scripts/api.js";
 import {useDispatch} from "react-redux";
 import {updateUser} from "@/state/user.js";
 import {closeModal} from "@/state/app/modal.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const VerifyPhone = ({user, phone}) => {
 
@@ -38,6 +39,9 @@ const VerifyPhone = ({user, phone}) => {
                                 ...user,
                                 phone: phone,
                                 phone_verified_at: 'Just now'
+                            }))
+                            dispatch(sendNotification({
+                                message: 'Your phone number has been updated',
                             }))
                             dispatch(closeModal())
                         }

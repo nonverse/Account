@@ -10,6 +10,7 @@ import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import api from "@/scripts/api.js";
 import auth from "@/scripts/auth.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const TwoStepLogin = () => {
 
@@ -74,6 +75,9 @@ const TwoStepLogin = () => {
                             dispatch(updateUser({
                                 ...user,
                                 use_totp: true
+                            }))
+                            dispatch(sendNotification({
+                                message: 'Two-Step login has been enabled',
                             }))
                             dispatch(closeModal())
                         }

@@ -8,6 +8,7 @@ import validate from "../../../scripts/validate";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import api from "@/scripts/api.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const Username = () => {
 
@@ -28,6 +29,9 @@ const Username = () => {
                             ...values
                         }))
                         //setLoading(false)
+                        dispatch(sendNotification({
+                            message: 'Your username has been updated',
+                        }))
                         dispatch(closeModal())
                     })
             }}>
