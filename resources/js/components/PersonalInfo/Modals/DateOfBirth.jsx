@@ -10,6 +10,7 @@ import helpers from "../../../scripts/helpers/helpers";
 import {updateUser} from "../../../state/user";
 import {closeModal} from "../../../state/app/modal";
 import api from "@/scripts/api.js";
+import {sendNotification} from "@/state/app/notification.js";
 
 const DateOfBirth = () => {
 
@@ -69,6 +70,9 @@ const DateOfBirth = () => {
                                 dob: `${values.dob_year}-${month}-${values.dob_day}`
                             })
                         )
+                        dispatch(sendNotification({
+                            message: 'You date of birth has been updated'
+                        }))
                         //setLoading(false)
                         dispatch(closeModal())
                     })
