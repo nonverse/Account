@@ -15,6 +15,7 @@ import {renderModal} from "@/state/app/modal.js";
 import Logout from "@/components/Logout.jsx";
 import cookies from "@/scripts/helpers/cookies.js";
 import {updateSettings} from "@/state/app/settings.js";
+import NotificationPortal from "@/components/NotificationPortal.jsx";
 
 function Index() {
 
@@ -71,6 +72,7 @@ function Index() {
                             <Navigation/>
                             <div className="content-wrapper">
                                 <ModalPortal/>
+                                <NotificationPortal/>
                                 <Router/>
                             </div>
                             <Logout/>
