@@ -51,7 +51,7 @@ const Email = () => {
                             dispatch(updateUser({
                                 ...user,
                                 email: values.email,
-                                email_verified_at: null
+                                email_verified_at: (user.email === values.email) ? user.email_verified_at : null
                             }))
                             dispatch(sendNotification({
                                 message: 'Your e-mail has been updated',
