@@ -71,7 +71,7 @@ const DateOfBirth = () => {
                             })
                         )
                         dispatch(sendNotification({
-                            message: 'You date of birth has been updated'
+                            message: 'Your date of birth has been updated'
                         }))
                         //setLoading(false)
                         dispatch(closeModal())
