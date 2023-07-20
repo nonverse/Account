@@ -1,0 +1,14 @@
+#new-service {
+    display: flex;
+    flex-direction: column;
+
+    #new-service-text {
+        color: rgba(var(--font-color-rgb), .5);
+    }
+
+    #services {
+        margin-top: 2rem;
+        width: 90%;
+        align-self: center;
+    }
+}
