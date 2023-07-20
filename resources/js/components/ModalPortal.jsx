@@ -13,6 +13,7 @@ import RecoveryEmail from "./Security/Modals/RecoveryEmail";
 import RecoveryPhone from "./Security/Modals/RecoveryPhone";
 import ScreenModal from "@/components/ScreenModal.jsx";
 import Theme from "@/components/Settings/Modals/Theme.jsx";
+import NewService from "@/components/Services/Modals/NewService.jsx";
 
 const ModalPortal = () => {
 
@@ -44,6 +45,9 @@ const ModalPortal = () => {
         'update_pin': <Pin/>,
         'update_recovery_email': <RecoveryEmail/>,
         'update_recovery_phone': <RecoveryPhone/>,
+
+        // Services
+        'new_service': <NewService/>,
 
         // Settings
         'update_theme': <Theme/>
