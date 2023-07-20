@@ -6,6 +6,7 @@ import Security from "./Security/Security";
 import Settings from "@/components/Settings/Settings.jsx";
 import VerifyEmail from "@/components/VerifyEmail.jsx";
 import Home from "@/components/Home/Home.jsx";
+import Services from "@/components/Services/Services.jsx";
 
 const Router = () => {
 
@@ -18,6 +19,7 @@ const Router = () => {
                 <Route path={"/"} element={<Home/>}/>
                 <Route path={"/personal-info"} element={<PersonalInfo/>}/>
                 <Route path={"/security"} element={<Security/>}/>
+                <Route path={"/app-and-services"} element={<Services/>}/>
                 <Route path={"/settings"} element={<Settings/>}/>
 
                 // Utilities

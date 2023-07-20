@@ -5,3 +5,7 @@
 .splash {
   color: $splash;
 }
+
+.default {
+    color: rgba(var(--font-color-rgb), .5);
+}
