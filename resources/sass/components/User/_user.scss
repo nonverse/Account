@@ -1,0 +1,22 @@
+#user-icon {
+    background-color: #6951FF;
+    position: absolute;
+    width: 2.2vw;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    top: 4vh;
+    right: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .4;
+    cursor: pointer;
+    z-index: 100;
+    &:hover {
+        opacity: .7;
+    }
+    svg {
+        color: var(--main);
+        scale: 1.2;
+    }
+}

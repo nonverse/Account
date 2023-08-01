@@ -16,6 +16,7 @@ import Logout from "@/components/Logout.jsx";
 import cookies from "@/scripts/helpers/cookies.js";
 import {updateSettings} from "@/state/app/settings.js";
 import NotificationPortal from "@/components/NotificationPortal.jsx";
+import UserIcon from "@/components/User/UserIcon.jsx";
 
 function Index() {
 
@@ -69,6 +70,7 @@ function Index() {
                     <Logo/>
                     <BrowserRouter>
                         <div className="container">
+                            <UserIcon/>
                             <Navigation/>
                             <div className="content-wrapper">
                                 <ModalPortal/>
