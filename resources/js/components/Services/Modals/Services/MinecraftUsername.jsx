@@ -43,7 +43,7 @@ const MinecraftUsername = ({advance}) => {
                                error={errors.username ? errors.username : error}/>
                         <div id="screen-modal-text">
                             <p>
-                                You must have a valid and genuine MinecraftUsername license in order to connect your profile to
+                                You must have a valid and genuine Minecraft license in order to connect your profile to
                                 your account
                                 <br/>
                                 Nonverse Studios is not affiliated with Mojang or Microsoft in any way.
