@@ -12,7 +12,6 @@ import store from "../state/store.js";
 import api from "@/scripts/api.js";
 import axios from "axios";
 import {renderModal} from "@/state/app/modal.js";
-import Logout from "@/components/Logout.jsx";
 import cookies from "@/scripts/helpers/cookies.js";
 import {updateSettings} from "@/state/app/settings.js";
 import NotificationPortal from "@/components/NotificationPortal.jsx";
@@ -77,7 +76,6 @@ function Index() {
                                 <NotificationPortal/>
                                 <Router/>
                             </div>
-                            <Logout/>
                         </div>
                     </BrowserRouter>
                 </>
