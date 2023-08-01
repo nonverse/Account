@@ -12,3 +12,24 @@
         align-self: center;
     }
 }
+
+#connect-minecraft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+
+    p {
+        text-align: center;
+        color: rgba(var(--font-color-rgb), .5);
+    }
+
+    #connect-minecraft-text-top {
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style-type: decimal;
+    }
+}
