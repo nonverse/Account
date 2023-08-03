@@ -2,6 +2,7 @@ import User from "@/components/User/User.jsx";
 import Logout from "@/components/User/Logout.jsx";
 import {useEffect, useState} from "react";
 import Loader from "@/components/Loader.jsx";
+import {motion} from "framer-motion";
 
 const UserPopup = ({setShow}) => {
 
@@ -14,9 +15,15 @@ const UserPopup = ({setShow}) => {
     }, [])
 
     return (
-        <div id="user-popup-overlay" onClick={() => {
-            setShow(false)
-        }}>
+        <motion.div id="user-popup-overlay"
+                    key={"user-popup-overlay"}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: .1}}
+                    exit={{opacity: 0}}
+                    onClick={() => {
+                        setShow(false)
+                    }}>
             <div id="user-popup" onClick={(e) => {
                 e.stopPropagation()
             }}>
@@ -33,7 +40,7 @@ const UserPopup = ({setShow}) => {
                         </>
                     )}
             </div>
-        </div>
+        </motion.div>
     )
 }
 
