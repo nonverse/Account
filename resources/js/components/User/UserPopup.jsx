@@ -3,15 +3,26 @@ import Logout from "@/components/User/Logout.jsx";
 import {useEffect, useState} from "react";
 import Loader from "@/components/Loader.jsx";
 import {motion} from "framer-motion";
+import {useSelector} from "react-redux";
 
 const UserPopup = ({setShow}) => {
 
+    const currentUser = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(true)
+    const [users, setUsers] = useState({})
 
     useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 500)
+        async function initialise() {
+            await axios.get("https://auth.nonverse.test/user/cookie", {
+                withCredentials: true
+            })
+                .then(response => {
+                    setUsers(response.data.data.users)
+                    setLoading(false)
+                })
+        }
+
+        initialise()
     }, [])
 
     return (
@@ -34,8 +45,12 @@ const UserPopup = ({setShow}) => {
                                 <h1>Users</h1>
                                 <h2>Select your account</h2>
                             </div>
-                            <User name={"Isuru Abhayaratne"} email={"isuru2003a@gmail.com"} isCurrent/>
-                            <User name={"Isuru Abhayaratne"} email={"isuru2003a@gmail.com"}/>
+                            {Object.keys(users).map((uuid) => {
+                                const user = users[uuid]
+                                return (
+                                    <User name={`${user.name_first} ${user.name_last}`} email={user.email} isCurrent={uuid === currentUser.uuid}/>
+                                )
+                            })}
                             <Logout setLoading={setLoading}/>
                         </>
                     )}
