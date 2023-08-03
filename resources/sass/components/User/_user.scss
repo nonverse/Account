@@ -1,7 +1,7 @@
 #user-icon {
     background-color: #6951FF;
     position: absolute;
-    width: 2.2vw;
+    width: 2vw;
     aspect-ratio: 1/1;
     border-radius: 50%;
     top: 4vh;
@@ -12,11 +12,48 @@
     opacity: .4;
     cursor: pointer;
     z-index: 100;
+
     &:hover {
         opacity: .7;
     }
+
     svg {
         color: var(--main);
-        scale: 1.2;
+        scale: 1.1;
+        margin-top: .15rem;
     }
 }
+
+.user {
+    border: 1px solid rgba(var(--font-color-rgb), .5);
+    padding: .5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    &:hover {
+        border-color: rgba($splash,  .5);
+        .user-email {
+            color: rgba($splash, .5) !important;
+        }
+    }
+    .user-account-info {
+        display: flex;
+        flex-direction: column;
+        .user-name {
+            color: var(--font-color);
+        }
+        .user-email {
+            color: rgba(var(--font-color-rgb), .5);
+        }
+    }
+}
+
+.user-current {
+    border-color: $splash;
+    pointer-events: none;
+}
+
+@import "user_popup";
