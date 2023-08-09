@@ -54,9 +54,9 @@ const DateOfBirth = () => {
     return (
         <ScreenModal heading="Date of Birth" subHeading="When were you born?">
             <Formik initialValues={{
-                dob_month: calendar.months[user.dob.split('-')[1] - 1],
-                dob_day: user.dob.split('-')[2],
-                dob_year: user.dob.split('-')[0]
+                dob_month: user.dob ? calendar.months[user.dob.split('-')[1] - 1] : 'January',
+                dob_day: user.dob ? user.dob.split('-')[2] : 1,
+                dob_year: user.dob ? user.dob.split('-')[0] : 2000
             }} onSubmit={async (values) => {
                 setLoading(true)
                 let month = helpers.getObjectKey(calendar.months, values.dob_month)
