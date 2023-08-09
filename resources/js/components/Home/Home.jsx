@@ -13,7 +13,7 @@ const Home = () => {
 
     return (
         <ContentContainer heading={`Welcome, ${user.name_first}`} subHeading="Your account for all things Nonverse"
-                          doesScroll>
+                          doesScroll={false}>
             <div className="messages">
                 {!user.email_verified_at ? <VerifyEmail/> : ''}
             </div>
