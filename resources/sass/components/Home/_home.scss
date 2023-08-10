@@ -19,3 +19,12 @@
 .home-subtext {
     color: rgba(var(--font-color-rgb), .25);
 }
+
+#home-under-construction {
+    height: 100%;
+    .under-construction {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+}

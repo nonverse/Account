@@ -17,7 +17,9 @@ const Home = () => {
             <div className="messages">
                 {!user.email_verified_at ? <VerifyEmail/> : ''}
             </div>
-            <UnderConstruction/>
+            <div id="home-under-construction">
+                <UnderConstruction/>
+            </div>
         </ContentContainer>
     )
 }
