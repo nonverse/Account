@@ -48,7 +48,7 @@ const UserPopup = ({setShow}) => {
                             {Object.keys(users).map((uuid) => {
                                 const user = users[uuid]
                                 return (
-                                    <User name={`${user.name_first} ${user.name_last}`} email={user.email} isCurrent={uuid === currentUser.uuid}/>
+                                    <User name={`${user.name_first} ${user.name_last}`} email={user.email} uuid={uuid} isCurrent={uuid === currentUser.uuid}/>
                                 )
                             })}
                             <Logout setLoading={setLoading}/>
