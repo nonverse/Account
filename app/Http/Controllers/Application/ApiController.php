@@ -69,10 +69,12 @@ class ApiController extends Controller
              */
             if ($accessToken = $request->session()->get('access_token')) {
                 if ($accessToken['token_expiry'] instanceof CarbonInterface && $accessToken['token_expiry']->isAfter(CarbonImmutable::now()->addMinute())) {
-                    //TODO check if access token belongs to authenticated user
-                    return new JsonResponse([
-                        'success' => true
-                    ]);
+                    $decodedToken = (array)JWT::decode($accessToken['token_value'], new Key(config('auth.public_key'), 'RS256'));
+                    if ($decodedToken['sub'] === $user['sub']) {
+                        return new JsonResponse([
+                            'success' => true
+                        ]);
+                    }
                 }
             }
 
