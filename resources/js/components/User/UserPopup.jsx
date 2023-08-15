@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import Loader from "@/components/Loader.jsx";
 import {motion} from "framer-motion";
 import {useSelector} from "react-redux";
+import InLineButton from "@/elements/InLineButton.jsx";
 
 const UserPopup = ({setShow}) => {
 
@@ -51,6 +52,7 @@ const UserPopup = ({setShow}) => {
                                     <User name={`${user.name_first} ${user.name_last}`} email={user.email} uuid={uuid} isCurrent={uuid === currentUser.uuid}/>
                                 )
                             })}
+                            <InLineButton id="user-add">Add user</InLineButton>
                             <Logout setLoading={setLoading}/>
                         </>
                     )}

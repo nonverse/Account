@@ -45,6 +45,17 @@
             }
         }
 
+        #user-add {
+            color: $splash;
+            float: right;
+            margin-left: auto;
+            margin-right: 5px;
+
+            &:hover {
+                color: rgba(var(--font-color-rgb), .5);
+            }
+        }
+
         #user-logout {
             color: orangered;
             float: left;
