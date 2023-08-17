@@ -22,6 +22,14 @@ class helpers {
             }
         })
     }
+
+    getRedirectQuery(args) {
+        return new URLSearchParams({
+            host: window.location.hostname,
+            resource: window.location.pathname,
+            args: args
+        })
+    }
 }
 
 export default new helpers()
