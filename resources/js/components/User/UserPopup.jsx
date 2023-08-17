@@ -5,6 +5,7 @@ import Loader from "@/components/Loader.jsx";
 import {motion} from "framer-motion";
 import {useSelector} from "react-redux";
 import InLineButton from "@/elements/InLineButton.jsx";
+import helpers from "../../scripts/helpers/helpers.js";
 
 const UserPopup = ({setShow}) => {
 
@@ -49,10 +50,12 @@ const UserPopup = ({setShow}) => {
                             {Object.keys(users).map((uuid) => {
                                 const user = users[uuid]
                                 return (
-                                    <User name={`${user.name_first} ${user.name_last}`} email={user.email} uuid={uuid} isCurrent={uuid === currentUser.uuid}/>
+                                    <User name={`${user.data.name_first} ${user.data.name_last}`} email={user.data.email} uuid={uuid} isCurrent={uuid === currentUser.uuid}/>
                                 )
                             })}
-                            <InLineButton id="user-add">Add user</InLineButton>
+                            <InLineButton id="user-add" onClick={() => {
+                                window.location = `https://auth.nonverse.test?${helpers.getRedirectQuery('ignore_session')}`
+                            }}>Add user</InLineButton>
                             <Logout setLoading={setLoading}/>
                         </>
                     )}
