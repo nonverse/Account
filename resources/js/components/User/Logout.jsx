@@ -11,7 +11,7 @@ const Logout = ({setLoading}) => {
                 <p id="logout-confirm">
                     <span>Are you sure?</span>
                     <br/>
-                    <span className="op-05">Only the current user will be logged out</span>
+                    <span className="op-05">You will be logged out and your browser data will be cleared</span>
                     <br/>
                     <div id="logout-confirm-actions">
                         <InLineButton onClick={() => {
