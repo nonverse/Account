@@ -1,13 +1,15 @@
 .navigation {
     position: absolute;
     width: 15%;
+    max-width: 400px;
     height: 100%;
-    margin-left: 7vw;
+    margin-left: 15vh;
     justify-self: center;
     align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 100;
 
     .nav-link {
         display: flex;

@@ -1,90 +1,91 @@
 .modal-portal {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  z-index: 1;
-
-  .modal-wrapper {
+    position: absolute;
     display: flex;
-  }
+    justify-content: center;
+    height: 100%;
+    z-index: 1;
 
-  .screen-modal {
-    background-color: var(--main);
-    overflow: hidden;
-
-    .screen-modal-loader {
-      width: 40vw;
-      height: 80vh;
-    }
-
-      .screen-modal-await-loader {
-          position: absolute;
-          top: 0;
-          width: 40vw;
-          height: 80vh;
-          background-color: var(--main);
-          z-index: 2;
-      }
-
-    .screen-modal-heading {
-      width: 40vw;
-      position: relative;
-
-      .content-heading {
-        justify-self: center;
-      }
-
-      .screen-modal-back {
-        position: absolute;
+    .modal-wrapper {
         display: flex;
-        align-items: center;
-        height: 100%;
+    }
 
-        svg {
-          stroke: rgba(var(--font-color-rgb), .5);
-          justify-self: start;
-          scale: 1.5;
-          cursor: pointer;
+    .screen-modal {
+        background-color: var(--main);
+        overflow: hidden;
+
+        .screen-modal-loader {
+            width: 40vw;
+            height: 80vh;
         }
-      }
-    }
 
-    #screen-modal-text {
-      width: 100%;
-      display: flex;
-      text-align: start;
-      margin-top: 2rem;
-      justify-content: start;
-      margin-bottom: 2rem;
-      margin-left: 5px;
-
-      p {
-        width: 80%;
-        color: rgba(var(--font-color-rgb), .5);
-      }
-    }
-
-    #screen-modal-form {
-      button[type="submit"] {
-        background: none;
-        outline: none;
-        border: none;
-        color: $splash;
-        align-self: end;
-        margin-right: 5px;
-        cursor: pointer;
-
-        &:hover {
-          color: rgba(var(--font-color-rgb), .5);
+        .screen-modal-await-loader {
+            position: absolute;
+            top: 0;
+            width: 40vw;
+            height: 80vh;
+            background-color: var(--main);
+            z-index: 2;
         }
-      }
-    }
 
-    .content {
-      width: 40vw !important;
-      padding-right: 0 !important;
-      transform: none !important;
+        .screen-modal-heading {
+            width: 40vw;
+            max-width: 1200px;
+            position: relative;
+
+            .content-heading {
+                justify-self: center;
+            }
+
+            .screen-modal-back {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                height: 100%;
+
+                svg {
+                    stroke: rgba(var(--font-color-rgb), .5);
+                    justify-self: start;
+                    scale: 1.5;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        #screen-modal-text {
+            width: 100%;
+            display: flex;
+            text-align: start;
+            margin-top: 2rem;
+            justify-content: start;
+            margin-bottom: 2rem;
+            margin-left: 5px;
+
+            p {
+                width: 80%;
+                color: rgba(var(--font-color-rgb), .5);
+            }
+        }
+
+        #screen-modal-form {
+            button[type="submit"] {
+                background: none;
+                outline: none;
+                border: none;
+                color: $splash;
+                align-self: end;
+                margin-right: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    color: rgba(var(--font-color-rgb), .5);
+                }
+            }
+        }
+
+        .content {
+            width: 40vw !important;
+            padding-right: 0 !important;
+            transform: none !important;
+        }
     }
-  }
 }
