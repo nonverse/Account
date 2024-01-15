@@ -21,7 +21,7 @@ const MinecraftUsername = ({advance}) => {
                 username: ''
             }} onSubmit={async (values) => {
                 setLoading(true)
-                await api.post('user/services/minecraft/validate', values)
+                await api.post('user/services/minecraft/auth/validate', values)
                     .then(response => {
                         advance()
                     })
