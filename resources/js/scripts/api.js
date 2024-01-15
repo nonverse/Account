@@ -15,9 +15,10 @@ class api {
             target: 'api',
             url: url
         })
-            .catch(e => {
-                this.requestAuthorization(e)
-            })
+            // TODO Fix error where the below code causes other catches to not work
+            // .catch(e => {
+            //     this.requestAuthorization(e)
+            // })
     }
 
     async post(url, data, withToken) {
@@ -30,9 +31,10 @@ class api {
                 ...(withToken && {requires_authorization: true})
             }
         })
-            .catch(e => {
-                this.requestAuthorization(e)
-            })
+            // TODO Fix error where the below code causes other catches to not work
+            // .catch(e => {
+            //     this.requestAuthorization(e)
+            // })
     }
 
     requestAuthorization(e) {
