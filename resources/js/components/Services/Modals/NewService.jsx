@@ -1,7 +1,6 @@
 import ScreenModal from "@/components/ScreenModal.jsx";
 import {useState} from "react";
 import SelectService from "@/components/Services/Modals/SelectService.jsx";
-import Minecraft from "@/components/Services/Modals/Services/Minecraft.jsx";
 
 const NewService = () => {
 
@@ -9,7 +8,6 @@ const NewService = () => {
     const [loading, setLoading] = useState(false)
     const views = {
         0: <SelectService toService={toService}/>,
-        1: <Minecraft back={back}/>
     }
 
     function toService(service) {
