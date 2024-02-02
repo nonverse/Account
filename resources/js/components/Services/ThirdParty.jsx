@@ -1,6 +1,6 @@
 import Sector from "@/components/Sector.jsx";
 
-const ThirdParty = () => {
+const ThirdParty = ({services}) => {
 
     return (
         <Sector heading="Third Party Apps">

@@ -3,7 +3,7 @@ import InLineButton from "@/elements/InLineButton.jsx";
 import {useDispatch} from "react-redux";
 import {renderModal} from "@/state/app/modal.js";
 
-const NonverseServices = () => {
+const NonverseServices = ({services}) => {
 
     const dispatch = useDispatch()
 
