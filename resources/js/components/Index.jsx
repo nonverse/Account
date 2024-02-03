@@ -1,5 +1,4 @@
 import Logo from "../elements/Logo";
-import Navigation from "./Navigation";
 import {BrowserRouter} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Router from "./Router";
@@ -16,18 +15,32 @@ import cookies from "@/scripts/helpers/cookies.js";
 import {updateSettings} from "@/state/app/settings.js";
 import NotificationPortal from "@/components/NotificationPortal.jsx";
 import UserIcon from "@/components/User/UserIcon.jsx";
+import UserPopup from "./User/UserPopup.jsx";
+import Navigation from "./Navigation.jsx";
 
 function Index() {
 
-    const [initialised, setInitialised] = useState(false)
+    /**
+     * Status of the initial API call
+     * This is used to render some components in order and provide
+     * a better user experience
+     */
+    const [apiStatus, setApiStatus] = useState({
+        called: false,
+        success: false,
+        code: 0
+    })
+
     const dispatch = useDispatch()
     const query = new URLSearchParams(window.location.search)
     const settings = useSelector(state => state.application.settings.value)
+    const user = useSelector(state => state.user.value)
     const settingsCookie = cookies.get('settings')
 
     useEffect(() => {
         api.initialise()
             .then(async response => {
+                setApiStatus({...apiStatus, called: true})
                 if (response.data.success) {
                     await api.get('user/settings')
                         .then(response => {
@@ -44,13 +57,11 @@ function Index() {
                         const state = JSON.parse(query.get('state'))
                         dispatch(renderModal(state.modal.value))
                     }
-                    if (window.location.pathname !== '/verify') {
-                        window.history.replaceState(null, document.title, window.location.pathname)
-                    }
-                    setInitialised(true)
+                    setApiStatus({...apiStatus, success: true, code: response.status})
                 }
             })
             .catch(e => {
+                setApiStatus({...apiStatus, code: e.response.status})
                 switch (e.response.status) {
                     case 401:
                         window.location = e.response.data.data.auth_url
@@ -64,12 +75,13 @@ function Index() {
     return (
         <div
             className={`app ${(settings && settings.theme) ? settings.theme : `${settingsCookie ? JSON.parse(settingsCookie).theme : 'system'}`}`}>
-            {initialised ?
+            {apiStatus.success ?
                 <>
                     <Logo/>
                     <BrowserRouter>
                         <div className="container">
-                            <UserIcon/>
+                            {/*{user ? <UserPopup/> : ''}*/}
+                            <UserIcon apiStatus={apiStatus}/>
                             <Navigation/>
                             <div className="content-wrapper">
                                 <ModalPortal/>

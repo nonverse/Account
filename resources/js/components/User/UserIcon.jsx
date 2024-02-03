@@ -1,19 +1,34 @@
-import UserSvg from "../../../assets/User.jsx";
-import UserPopup from "@/components/User/UserSelector.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import UserSelector from "./UserSelector.jsx";
+import {motion} from "framer-motion";
 
-const UserIcon = () => {
+const UserIcon = ({apiStatus}) => {
 
+    const user = useSelector(state => state.user.value)
     const [show, setShow] = useState(false)
+    const [showIcon, setShowIcon] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShowIcon(true)
+        }, 4000)
+    }, [])
 
     return (
         <>
-            <div id="user-icon" onClick={() => {
-                setShow(true)
-            }}>
-                <UserSvg/>
-            </div>
-            {show ? <UserPopup setShow={setShow}/> : ''}
+            <motion.div
+                id="user-icon"
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                onClick={() => {
+                    setShow(true)
+                }}>
+                <div id="user-icon-inner">
+                    {user ? <h1>{user.name_first.charAt(0).toUpperCase()}</h1> : ''}
+                </div>
+            </motion.div>
+            {show ? <UserSelector setShow={setShow}/> : ''}
         </>
     )
 }
