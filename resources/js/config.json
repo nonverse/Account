@@ -1,0 +1,9 @@
+{
+    "app": {
+        "renderWithoutApiSuccess": false,
+        "showUserPopup": false,
+        "maintainQuery": [
+
+        ]
+    }
+}

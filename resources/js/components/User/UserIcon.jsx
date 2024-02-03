@@ -17,18 +17,36 @@ const UserIcon = ({apiStatus}) => {
 
     return (
         <>
-            <motion.div
-                id="user-icon"
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                onClick={() => {
-                    setShow(true)
-                }}>
-                <div id="user-icon-inner">
-                    {user ? <h1>{user.name_first.charAt(0).toUpperCase()}</h1> : ''}
-                </div>
-            </motion.div>
-            {show ? <UserSelector setShow={setShow}/> : ''}
+            {(apiStatus.code !== 0 && apiStatus.code.toString().charAt(0) !== '2') ? <>
+                <motion.div
+                    id="user-icon"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    onClick={() => {
+                        setShow(true)
+                    }}>
+                    <div id="user-icon-inner">
+                        {user ? <h1>{user.name_first.charAt(0).toUpperCase()}</h1> : ''}
+                    </div>
+                </motion.div>
+                {show ? <UserSelector setShow={setShow}/> : ''}
+            </> : <>
+                {showIcon ? <>
+                    <motion.div
+                        id="user-icon"
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        onClick={() => {
+                            setShow(true)
+                        }}>
+                        <div id="user-icon-inner">
+                            {user ? <h1>{user.name_first.charAt(0).toUpperCase()}</h1> : ''}
+                        </div>
+                    </motion.div>
+                    {show ? <UserSelector setShow={setShow}/> : ''}
+                </> : <></>}
+            </>
+            }
         </>
     )
 }
