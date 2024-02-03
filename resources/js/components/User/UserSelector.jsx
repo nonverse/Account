@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import InLineButton from "@/elements/InLineButton.jsx";
 import helpers from "../../scripts/helpers/helpers.js";
 
-const UserPopup = ({setShow}) => {
+const UserSelector = ({setShow}) => {
 
     const currentUser = useSelector(state => state.user.value)
     const [loading, setLoading] = useState(true)
@@ -28,8 +28,8 @@ const UserPopup = ({setShow}) => {
     }, [])
 
     return (
-        <motion.div id="user-popup-overlay"
-                    key={"user-popup-overlay"}
+        <motion.div id="user-selector-overlay"
+                    key={"user-selector-overlay"}
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: .1}}
@@ -37,13 +37,13 @@ const UserPopup = ({setShow}) => {
                     onClick={() => {
                         setShow(false)
                     }}>
-            <div id="user-popup" onClick={(e) => {
+            <div id="user-selector" onClick={(e) => {
                 e.stopPropagation()
             }}>
                 {loading ?
                     <Loader/> : (
                         <>
-                            <div id="user-popup-title">
+                            <div id="user-selector-title">
                                 <h1>Users</h1>
                                 <h2>Select your account</h2>
                             </div>
@@ -64,4 +64,4 @@ const UserPopup = ({setShow}) => {
     )
 }
 
-export default UserPopup
+export default UserSelector

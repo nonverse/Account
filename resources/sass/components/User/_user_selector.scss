@@ -1,4 +1,4 @@
-#user-popup-overlay {
+#user-selector-overlay {
     //background-color: rgba(var(--font-color-rgb), .1);
     width: 100vw;
     height: 100vh;
@@ -9,7 +9,7 @@
     align-items: start;
     justify-content: end;
 
-    #user-popup {
+    #user-selector {
         width: 13vw;
         background-color: var(--main);
         -moz-box-shadow: 0 0 10px rgba(var(--font-color-rgb), .2);
@@ -28,7 +28,7 @@
             }
         }
 
-        #user-popup-title {
+        #user-selector-title {
             margin-left: 5px;
             margin-bottom: 1rem;
 
