@@ -3,7 +3,7 @@
         "renderWithoutApiSuccess": false,
         "showUserPopup": false,
         "maintainQuery": [
-
+            "/verify"
         ]
     }
 }
