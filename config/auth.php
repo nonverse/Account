@@ -27,7 +27,7 @@ return [
      * Required OAuth2 access token scopes
      */
     'scopes' => [
-        '*'
+        'user.*'
     ],
 
     /*
