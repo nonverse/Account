@@ -63,74 +63,94 @@ function Index() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+
         /**
-         * Log the application into the Nonverse API
-         * The Nonverse authentication & authorization server will automatically
-         * log a user in upon application authorization
+         * Get user store (data)
          */
-        api.initialise()
-            .then(async response => {
-                setApiStatus({...apiStatus, called: true})
-                if (response.data.success) {
-                    /**
-                     * Get user settings
-                     */
-                    await api.get('user/settings')
-                        .then(response => {
-                            dispatch(updateSettings(response.data.data))
-                        })
-                    /**
-                     * Get user store (data)
-                     */
-                    await api.get('user/store')
-                        .then(response => {
-                            dispatch(updateUser(response.data.data))
-                        })
-                    /**
-                     * Check if authorization token is present in the url.
-                     * If so, pass it onto the backend for secure storage
-                     */
-                    if (query.get('authorization_token')) {
-                        await axios.post('/api/authorization-token', query)
-                    }
-                    /**
-                     * Check for application state in the url.
-                     * If so, restore the application to the desired state
-                     */
-                    if (query.get('state')) {
-                        const state = JSON.parse(query.get('state'))
-                        dispatch(renderModal(state.modal.value))
-                    }
-                    if (!config.app.maintainQuery.includes(window.location.pathname)) {
-                        window.history.replaceState(null, document.title, window.location.pathname)
-                    }
-                    setApiStatus({...apiStatus, success: true, code: response.status})
-                }
-            })
-            .catch(e => {
-                setApiStatus({...apiStatus, code: e.response.status})
-                switch (e.response.status) {
-                    case 401:
+        async function getUserStore() {
+            await api.get('user/store')
+                .then(response => {
+                    dispatch(updateUser(response.data.data))
+                })
+        }
+
+        /**
+         * Get user settings
+         */
+        async function getUserSettings() {
+            await api.get('user/settings')
+                .then(response => {
+                    dispatch(updateSettings(response.data.data))
+                })
+        }
+
+        /**
+         * Initialize the application
+         * @returns {Promise<void>}
+         */
+        async function initializeApp() {
+            /**
+             * Log the application into the Nonverse API
+             * The Nonverse authentication & authorization server will automatically
+             * log a user in upon application authorization
+             */
+            api.initialise()
+                .then(async response => {
+                    setApiStatus({...apiStatus, called: true})
+                    if (response.data.success) {
                         /**
-                         * By default, the application will ignore authentication errors unless
-                         * referred by the Nonverse authentication & authorization server, in which case
-                         * the user will be redirected to the auth server to complete the authentication
-                         * and/or authorization process. Unless renderWithoutApiSuccess is false, in which
-                         * case the user will always be redirected to the auth server if there are
-                         * any authentication errors
+                         * Get data from API
                          */
-                        if (config.app.renderWithoutApiSuccess) {
-                            if (document.referrer === import.meta.env.VITE_AUTH_SERVER) {
+                        await Promise.all([getUserStore(), getUserSettings()])
+                        /**
+                         * Check if authorization token is present in the url.
+                         * If so, pass it onto the backend for secure storage
+                         */
+                        if (query.get('authorization_token')) {
+                            await axios.post('/api/authorization-token', query)
+                        }
+                        /**
+                         * Check for application state in the url.
+                         * If so, restore the application to the desired state
+                         */
+                        if (query.get('state')) {
+                            const state = JSON.parse(query.get('state'))
+                            dispatch(renderModal(state.modal.value))
+                        }
+                        if (!config.app.maintainQuery.includes(window.location.pathname)) {
+                            window.history.replaceState(null, document.title, window.location.pathname)
+                        }
+                        setApiStatus({...apiStatus, success: true, code: response.status})
+                    }
+                })
+                .catch(e => {
+                    setApiStatus({...apiStatus, code: e.response.status})
+                    switch (e.response.status) {
+                        case 401:
+                            /**
+                             * By default, the application will ignore authentication errors unless
+                             * referred by the Nonverse authentication & authorization server, in which case
+                             * the user will be redirected to the auth server to complete the authentication
+                             * and/or authorization process. Unless renderWithoutApiSuccess is false, in which
+                             * case the user will always be redirected to the auth server if there are
+                             * any authentication errors
+                             */
+                            if (config.app.renderWithoutApiSuccess) {
+                                if (document.referrer === import.meta.env.VITE_AUTH_SERVER) {
+                                    window.location = e.response.data.data.auth_url
+                                }
+                            } else {
                                 window.location = e.response.data.data.auth_url
                             }
-                        } else {
-                            window.location = e.response.data.data.auth_url
-                        }
-                        break
-                    default:
-                        break
-                }
-            })
+                            break
+                        default:
+                            break
+                    }
+                })
+        }
+
+        initializeApp()
+
     }, [dispatch])
 
     return (
