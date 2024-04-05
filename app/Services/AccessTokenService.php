@@ -78,6 +78,7 @@ class AccessTokenService
             'grant_type' => 'refresh_token',
             'client_id' => env('OAUTH_CLIENT_ID'),
             'client_secret' => env('OAUTH_CLIENT_SECRET'),
+            'redirect_uri' => env('APP_URL')
         ]);
 
         if (!$response->successful()) {
